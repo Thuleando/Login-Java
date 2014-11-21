@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="V_Sessions_Insert_TRG" directorySegmentName="seg_0" id="3631A09E-6C2A-8F5F-FB38-FCED2B1D355E">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:49:25 UTC</createdTime>
+<comment>If the user has any previous sessions that were not terminated, they are updated to have a termination timestamp which is the same as the timestamp that is used to initiate the new session. The new session has its termination date left null.</comment>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<actions>INSERT</actions>
+<body>BEGIN&lt;br/&gt;	UPDATE Sessions&lt;br/&gt;		SET Sessions.WhenTerminated = :NewRow.WhenInitiated&lt;br/&gt;		WHERE Sessions.Accounts_ID = :NewRow.Accounts_ID&lt;br/&gt;		AND Sessions.WhenTerminated IS NULL;&lt;br/&gt;&lt;br/&gt;	INSERT INTO Sessions VALUES (:NewRow.Accounts_ID, :NewRow.WhenInitiated, NULL);&lt;br/&gt;  DBMS_OUTPUT.PUT_LINE(&apos;Cleaned up any previous sessions for this user and opened a new session.&apos;);&lt;br/&gt;END V_Sessions_Insert_TRG;</body>
+<triggerTime>INSTEAD OF</triggerTime>
+<ref_NEW_AS>NewRow</ref_NEW_AS>
+<state>ENABLE</state>
+<view>A95AD321-934A-E3AB-47D6-A8208E37641C</view>
+</TriggerOraclev10g>

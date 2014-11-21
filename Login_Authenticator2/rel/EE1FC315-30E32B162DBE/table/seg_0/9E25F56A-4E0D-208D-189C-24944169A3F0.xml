@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9E25F56A-4E0D-208D-189C-24944169A3F0" name="EventReasons">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:51:20 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="7260E351-0FB2-41EB-A935-411E6A43E127">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:52:26 UTC</createdTime>
+<comment>When we populate it, let&apos;s put Creation as reason 1 (with ReasonType &apos;U&apos;), and AutoLock (with ReasonType &apos;L&apos;) as type 2.&lt;br/&gt;&lt;br/&gt;... or whatever a better name for &quot;Autolock&quot; might be.</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ReasonName" id="7703CF92-8FCB-58D0-C2D1-9E8794C816C6">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:53:30 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ReasonType" id="896AB294-2D85-43DB-2D4B-D45432EE6E8F">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 02:27:55 UTC</createdTime>
+<comment>&apos;L&apos; = Reason for locking&lt;br/&gt;&apos;U&apos; = Reason for unlocking</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<listOfValues>
+<valueDef value="&apos;L&apos;" description="Lock Reason"/>
+<valueDef value="&apos;U&apos;" description="Unlock Reason"/>
+</listOfValues>
+<defaultValue>&apos;L&apos;</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="A63EBDA7-7C14-2D9F-E769-4487DC05266E">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:53:57 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7F1631ED-2BFC-2117-A0C6-5C4219B770F9" name="EventReasons_PK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:52:27 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7260E351-0FB2-41EB-A935-411E6A43E127"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="738FD52A-96D3-2D1B-1456-2AAD33C4C260" name="EventReasons_RName_UN">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 03:47:06 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7703CF92-8FCB-58D0-C2D1-9E8794C816C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

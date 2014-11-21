@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A3307FA6-C3A3-2C24-B5C2-F8668D976339" name="Accounts">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:21:48 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="B886F16D-45D9-E734-3D8E-5539BA97F4D0">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<comment>Although Username must be unique, it can be changed. This ID doesn&apos;t change. Having this unchangeable ID allows the username to be changed with fewer other changes having to be propagated through the database as a result of that one change.</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Username" id="90770484-91D0-4AB5-DAE4-945718A474E8">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PWord" id="F266B9CB-95D8-1FBC-F0A1-3570EF35A3FA">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AccountTypes_ID" id="7B64F908-FBD6-8D16-9935-F00C61128F89">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:37:43 UTC</createdTime>
+<comment>Defaults to type 2 (should be User).</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>2</defaultValue>
+<delegate>667555A8-C607-536D-ABCC-5A06FBA91A66</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2F6666F1-9325-5A01-A39B-0933A2914CAD" referredColumn="667555A8-C607-536D-ABCC-5A06FBA91A66"/>
+</associations>
+</Column>
+<Column name="WhenCreated" id="ACFEF159-5099-1BA2-EF4B-227A3F21F38B">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:18:12 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LockStatus" id="00764298-4D99-7365-CA50-EB9D3E1E21BF">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-11 09:28:45 UTC</createdTime>
+<comment>If &apos;Y&apos; the account is locked, if &apos;N&apos; the account is unlocked.</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<listOfValues>
+<valueDef value="&apos;N&apos;" description="Unlocked"/>
+<valueDef value="&apos;Y&apos;" description="Locked"/>
+</listOfValues>
+<defaultValue>&apos;N&apos;</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8539D2B-C46A-C22B-9EF3-2BDD88802BFB" name="Accounts_PK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B886F16D-45D9-E734-3D8E-5539BA97F4D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="74EC35BA-BE4D-8746-9661-332A75F91C74" name="Accounts_Username_UN">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:23 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="90770484-91D0-4AB5-DAE4-945718A474E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E1B00F31-0B95-74AB-C157-A2BED2447358" name="Accounts_AccountTypes_FK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:37:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7B64F908-FBD6-8D16-9935-F00C61128F89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="USERNAME_START_UPPERCASE" directorySegmentName="seg_0" id="9B26571A-89C4-361F-9FE1-4ECB631D52C2">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 01:51:38 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<rule>SUBSTR(Username, 1, 1) = UPPER(SUBSTR(Username, 1, 1))</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

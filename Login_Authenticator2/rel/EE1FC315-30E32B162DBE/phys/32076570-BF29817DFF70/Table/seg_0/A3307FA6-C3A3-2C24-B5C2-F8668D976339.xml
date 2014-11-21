@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="Accounts" directorySegmentName="seg_0" id="A3307FA6-C3A3-2C24-B5C2-F8668D976339">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LockStatus" id="00764298-4D99-7365-CA50-EB9D3E1E21BF">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-11 09:28:45 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>&apos;N&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="AccountTypes_ID" id="7B64F908-FBD6-8D16-9935-F00C61128F89">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:37:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>2</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="Username" id="90770484-91D0-4AB5-DAE4-945718A474E8">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WhenCreated" id="ACFEF159-5099-1BA2-EF4B-227A3F21F38B">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:18:12 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="ID" id="B886F16D-45D9-E734-3D8E-5539BA97F4D0">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PWord" id="F266B9CB-95D8-1FBC-F0A1-3570EF35A3FA">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Accounts_AccountTypes_FK" id="E1B00F31-0B95-74AB-C157-A2BED2447358">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:37:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Accounts_PK" id="B8539D2B-C46A-C22B-9EF3-2BDD88802BFB">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
+<TableCheckConstraint name="USERNAME_START_UPPERCASE" id="9B26571A-89C4-361F-9FE1-4ECB631D52C2">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 01:51:38 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</TableCheckConstraint>
+</tableCheckConstraints>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="Accounts_Username_UN" id="74EC35BA-BE4D-8746-9661-332A75F91C74">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:23 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

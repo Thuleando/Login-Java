@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0" name="LoginAttempts" seqName="seg_0"/>
+   <object objectType="Table" objectID="A3307FA6-C3A3-2C24-B5C2-F8668D976339" name="Accounts" seqName="seg_0"/>
+   <object objectType="Table" objectID="F5D980D1-BECE-495B-ACB8-21E2FD40E9F0" name="Sessions" seqName="seg_0"/>
+   <object objectType="View" objectID="608EC0EA-5EB8-A1C0-CB5F-A3939361D13D" name="V_LoginAttempts" seqName="seg_0"/>
+   <object objectType="View" objectID="A95AD321-934A-E3AB-47D6-A8208E37641C" name="V_Sessions" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="1BBF1425-62AB-56CB-3A85-9FC67D13CB11" name="LoginAttempts_Accounts_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="EB0A2D94-76B6-CADF-1C8B-AE9E36646125" name="Sessions_Accounts_FK" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

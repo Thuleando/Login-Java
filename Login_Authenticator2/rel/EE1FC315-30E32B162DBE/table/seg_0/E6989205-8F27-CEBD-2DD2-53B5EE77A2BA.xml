@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E6989205-8F27-CEBD-2DD2-53B5EE77A2BA" name="LockEvents">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:40:36 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="688A4D4A-3F87-6EC0-4BCA-DA9CD3F1EF0C">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:42:22 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Accounts_ID" id="8E91FCCD-0F9D-696F-909B-14B7D74BA2F7">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:59:14 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<delegate>B886F16D-45D9-E734-3D8E-5539BA97F4D0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="520EDC35-971D-1616-D900-CED9D0007027" referredColumn="B886F16D-45D9-E734-3D8E-5539BA97F4D0"/>
+</associations>
+</Column>
+<Column name="EventType" id="8CB1BD42-4EC1-0A0F-9519-102A2578BD6F">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:44:17 UTC</createdTime>
+<comment>Only 2 valid values:&lt;br/&gt;&apos;L&apos; = Locked&lt;br/&gt;&apos;U&apos; = Unlocked</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<listOfValues>
+<valueDef value="&apos;L&apos;" description="Locked"/>
+<valueDef value="&apos;U&apos;" description="Unlocked"/>
+</listOfValues>
+<defaultValue>&apos;U&apos;</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EventDate" id="61CA35A5-9E6E-B461-0349-E1F7D7A93AAD">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:43:48 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EventReasons_ID" id="C4C04917-35E5-5E83-FE38-A496681BF56D">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 02:00:49 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>1</defaultValue>
+<delegate>7260E351-0FB2-41EB-A935-411E6A43E127</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3DB4E565-A44D-262E-D101-F0CFB86CA42B" referredColumn="7260E351-0FB2-41EB-A935-411E6A43E127"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D31EFBB9-7F48-9647-BCD2-BD571CF14569" name="LockEvents_PK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:42:24 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="688A4D4A-3F87-6EC0-4BCA-DA9CD3F1EF0C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD56B68C-9AE7-A827-246F-EEEBE4EC4411" name="LockEvents_Accounts_FK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:59:14 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E91FCCD-0F9D-696F-909B-14B7D74BA2F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0E6CBD89-4218-9FF1-6913-ED5555C06D41" name="LockEvents_EReasons_FK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 02:00:49 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C4C04917-35E5-5E83-FE38-A496681BF56D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

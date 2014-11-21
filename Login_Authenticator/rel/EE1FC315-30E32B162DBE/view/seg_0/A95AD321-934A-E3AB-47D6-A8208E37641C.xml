@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="A95AD321-934A-E3AB-47D6-A8208E37641C" name="V_Sessions">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<userDefined>false</userDefined>
+<parsed>true</parsed>
+<usedContainers>
+<container containerID="F5D980D1-BECE-495B-ACB8-21E2FD40E9F0"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="Accounts_ID" id="09BBC08C-1E10-B761-0A3A-5EB401E64108">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>8678AE9F-993F-DA44-4049-CBDD472CC275</referencedColumn>
+<table>F5D980D1-BECE-495B-ACB8-21E2FD40E9F0</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WhenInitiated" id="BFF16AD1-DB52-24AF-2609-DDB072838077">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>TIMESTAMP (4)</dataType>
+<reference>false</reference>
+<referencedColumn>708FAC13-99AA-1FE2-EFCA-E690C3C704B2</referencedColumn>
+<table>F5D980D1-BECE-495B-ACB8-21E2FD40E9F0</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WhenTerminated" id="D4F69897-D5F4-E04F-DF5D-028CCF0599E0">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>TIMESTAMP (4)</dataType>
+<reference>false</reference>
+<referencedColumn>AF69D71A-AB43-3479-E03E-D935C5353B94</referencedColumn>
+<table>F5D980D1-BECE-495B-ACB8-21E2FD40E9F0</table>
+</viewElement>
+</viewElements>
+</TableView>

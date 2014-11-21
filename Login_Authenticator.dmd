@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Login_Authenticator" id="EBEC2A74-F888-A218-3D11-6F1F5A0D82DF" version="3.5">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:18:02 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>EBEC2A74-F888-A218-3D11-6F1F5A0D82DF</designId>
+</OSDM_Design>

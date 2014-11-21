@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="AccountTypes" directorySegmentName="seg_0" id="9BFA8B28-2DD3-D929-2BFA-155C2E1F9454">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:33:14 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID" id="667555A8-C607-536D-ABCC-5A06FBA91A66">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:35:01 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TypeName" id="B36D25F5-F889-52DE-B48F-DE875B116231">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:35:59 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="AccountTypes_PK" id="8F8AF4F6-3623-B82A-3B33-C9F3D713C59C">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:35:03 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="AccountTypes_TName_UN" id="D9A76E0E-82E2-DB41-732A-95305EFE792A">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:36:32 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

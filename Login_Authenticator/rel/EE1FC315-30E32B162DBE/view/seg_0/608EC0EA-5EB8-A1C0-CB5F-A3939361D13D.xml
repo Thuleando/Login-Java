@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="608EC0EA-5EB8-A1C0-CB5F-A3939361D13D" name="V_LoginAttempts">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<userDefined>false</userDefined>
+<parsed>true</parsed>
+<usedContainers>
+<container containerID="45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="Accounts_ID" id="0A7DCE7E-F69D-0588-0408-E3FE2B2DE125">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F</referencedColumn>
+<table>45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WhenAttempted" id="29DFBBCA-CEB0-F504-69BC-9CBC44619526">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>TIMESTAMP (4)</dataType>
+<reference>false</reference>
+<referencedColumn>31A5895E-FCF2-91D0-7B07-E8E7F602633A</referencedColumn>
+<table>45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WasSuccessful" id="C061BE65-8BCB-2F8D-3251-8EC63EB0608B">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-14 01:23:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>CHAR (1)</dataType>
+<reference>false</reference>
+<referencedColumn>CE159B76-E8ED-FC5F-B736-472829DAB8B1</referencedColumn>
+<table>45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0</table>
+</viewElement>
+</viewElements>
+</TableView>

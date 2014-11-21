@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="LoginAttempts" directorySegmentName="seg_0" id="45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenAttempted" id="31A5895E-FCF2-91D0-7B07-E8E7F602633A">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WasSuccessful" id="CE159B76-E8ED-FC5F-B736-472829DAB8B1">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:16:13 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>&apos;N&apos;</defaultValue>
+<elementType>CHAR (1)</elementType>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="Accounts_ID" id="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="LoginAttempts_Accounts_FK" id="FD6744D7-8844-67C9-E28B-AF63E023D68F">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="LoginAttempts_PK" id="7824017E-35F5-3DCA-4E6E-D8C7707EB6D2">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:28 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

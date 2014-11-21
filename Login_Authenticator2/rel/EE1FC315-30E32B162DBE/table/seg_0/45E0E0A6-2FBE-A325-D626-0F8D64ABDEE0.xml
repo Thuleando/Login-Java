@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45E0E0A6-2FBE-A325-D626-0F8D64ABDEE0" name="LoginAttempts">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:26:16 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Accounts_ID" id="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<delegate>B886F16D-45D9-E734-3D8E-5539BA97F4D0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1BBF1425-62AB-56CB-3A85-9FC67D13CB11" referredColumn="B886F16D-45D9-E734-3D8E-5539BA97F4D0"/>
+</associations>
+</Column>
+<Column name="WhenAttempted" id="31A5895E-FCF2-91D0-7B07-E8E7F602633A">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:27:11 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WasSuccessful" id="CE159B76-E8ED-FC5F-B736-472829DAB8B1">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:16:13 UTC</createdTime>
+<comment>&apos;Y&apos; or &apos;N&apos;</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>&apos;N&apos;</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<listOfValues>
+<valueDef value="&apos;N&apos;" description="No or False"/>
+<valueDef value="&apos;Y&apos;" description="Yes or True"/>
+</listOfValues>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7824017E-35F5-3DCA-4E6E-D8C7707EB6D2" name="LoginAttempts_PK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:28 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31A5895E-FCF2-91D0-7B07-E8E7F602633A"/>
+<colUsage columnID="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD6744D7-8844-67C9-E28B-AF63E023D68F" name="LoginAttempts_Accounts_FK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

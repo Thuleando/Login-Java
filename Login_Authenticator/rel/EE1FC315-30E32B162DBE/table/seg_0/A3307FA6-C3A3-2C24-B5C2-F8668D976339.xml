@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A3307FA6-C3A3-2C24-B5C2-F8668D976339" name="Accounts">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:21:48 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="B886F16D-45D9-E734-3D8E-5539BA97F4D0">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<comment>Although Username must be unique, it can be changed. This ID doesn&apos;t change. Having this unchangeable ID allows the username to be changed with fewer other changes having to be propagated through the database as a result of that one change.</comment>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Username" id="90770484-91D0-4AB5-DAE4-945718A474E8">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PWord" id="F266B9CB-95D8-1FBC-F0A1-3570EF35A3FA">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:23:16 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WhenCreated" id="ACFEF159-5099-1BA2-EF4B-227A3F21F38B">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:18:12 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UnlockDate" id="1A82CFD3-AAE6-BE5A-13CA-1D1AB16971F2">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 03:33:07 UTC</createdTime>
+<comment>Most recent date that the account was unlocked. For new accounts, it should be set to the same date as WhenCreated.&lt;br/&gt;&lt;br/&gt;This is to deal with scenarios when an administrator has unlocked an account upon the user&apos;s request, in the same calendar day that the user locked themselves out (with too many failed login attempts). In such an event, the user would again lock themselves out if they have a failed login attempt even once in that same day!&lt;br/&gt;&lt;br/&gt;With this column, the 3 failed login attempts must all occur after the UnlockDate (in addition to being on the same calendar day) in order to cause a lockout.</comment>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LockDate" id="00764298-4D99-7365-CA50-EB9D3E1E21BF">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-11 09:28:45 UTC</createdTime>
+<comment>If NULL, the account is unlocked. Otherwise, the value is the timestamp when it was locked.</comment>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>NULL</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8539D2B-C46A-C22B-9EF3-2BDD88802BFB" name="Accounts_PK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:00 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B886F16D-45D9-E734-3D8E-5539BA97F4D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="74EC35BA-BE4D-8746-9661-332A75F91C74" name="Accounts_Username_UN">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:23 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="90770484-91D0-4AB5-DAE4-945718A474E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints>
+<tableCheckConstraint class="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" name="USERNAME_PWORD_NOT_SAME" directorySegmentName="seg_0" id="63E28774-369C-109E-6F37-0053C4B5BFFE">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 01:51:38 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<rule>TRIM(Username) != TRIM(PWord)</rule>
+</tableCheckConstraint>
+<tableCheckConstraint class="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" name="PWORD_START_UPPERCASE" directorySegmentName="seg_0" id="FE6452E7-5A2C-5F66-6EA9-1CD647E74B45">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 01:51:38 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<rule>SUBSTR(PWord, 1, 1) = UPPER(SUBSTR(PWord, 1, 1))</rule>
+</tableCheckConstraint>
+<tableCheckConstraint class="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" name="USERNAME_START_UPPERCASE" directorySegmentName="seg_0" id="9B26571A-89C4-361F-9FE1-4ECB631D52C2">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-12 01:51:38 UTC</createdTime>
+<ownerDesignName>Login_Authenticator</ownerDesignName>
+<rule>SUBSTR(Username, 1, 1) = UPPER(SUBSTR(Username, 1, 1))</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

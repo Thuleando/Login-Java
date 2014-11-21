@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="Sessions" directorySegmentName="seg_0" id="F5D980D1-BECE-495B-ACB8-21E2FD40E9F0">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenInitiated" id="708FAC13-99AA-1FE2-EFCA-E690C3C704B2">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:28:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="Accounts_ID" id="8678AE9F-993F-DA44-4049-CBDD472CC275">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:52 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenTerminated" id="AF69D71A-AB43-3479-E03E-D935C5353B94">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:17:51 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Sessions_Accounts_FK" id="4D80A87B-50D0-A0EF-4352-41BEDDCE02AC">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:52 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="Sessions_PK" id="4B849938-C787-0587-E57A-B31C5172421A">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

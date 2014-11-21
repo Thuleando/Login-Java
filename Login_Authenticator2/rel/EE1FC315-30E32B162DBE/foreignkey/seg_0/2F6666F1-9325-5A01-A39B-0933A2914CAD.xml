@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2F6666F1-9325-5A01-A39B-0933A2914CAD" name="Accounts_AccountTypes_FK">
+<createdBy>Shelley</createdBy>
+<createdTime>2014-11-20 01:37:43 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<containerWithKeyObject>A3307FA6-C3A3-2C24-B5C2-F8668D976339</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>E1B00F31-0B95-74AB-C157-A2BED2447358</localFKIndex>
+<keyObject>8F8AF4F6-3623-B82A-3B33-C9F3D713C59C</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

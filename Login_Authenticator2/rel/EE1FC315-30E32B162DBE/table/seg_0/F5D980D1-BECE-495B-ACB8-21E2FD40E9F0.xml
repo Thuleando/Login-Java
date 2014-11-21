@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F5D980D1-BECE-495B-ACB8-21E2FD40E9F0" name="Sessions">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:24:33 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Accounts_ID" id="8678AE9F-993F-DA44-4049-CBDD472CC275">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:52 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<delegate>B886F16D-45D9-E734-3D8E-5539BA97F4D0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EB0A2D94-76B6-CADF-1C8B-AE9E36646125" referredColumn="B886F16D-45D9-E734-3D8E-5539BA97F4D0"/>
+</associations>
+</Column>
+<Column name="WhenInitiated" id="708FAC13-99AA-1FE2-EFCA-E690C3C704B2">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-09 00:25:45 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WhenTerminated" id="AF69D71A-AB43-3479-E03E-D935C5353B94">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:17:51 UTC</createdTime>
+<comment>If NULL, the session is still active. Otherwise, the value is the timestamp when the session was terminated.&lt;br/&gt;&lt;br/&gt;When a new session for a given account is initiated, all other open sessions for that account are terminated.</comment>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>NULL</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4B849938-C787-0587-E57A-B31C5172421A" name="Sessions_PK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:09:15 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8678AE9F-993F-DA44-4049-CBDD472CC275"/>
+<colUsage columnID="708FAC13-99AA-1FE2-EFCA-E690C3C704B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D80A87B-50D0-A0EF-4352-41BEDDCE02AC" name="Sessions_Accounts_FK">
+<createdBy>Jason</createdBy>
+<createdTime>2014-11-10 00:08:52 UTC</createdTime>
+<ownerDesignName>Login_Authenticator2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8678AE9F-993F-DA44-4049-CBDD472CC275"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
