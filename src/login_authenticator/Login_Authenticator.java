@@ -112,7 +112,7 @@ public class Login_Authenticator extends JFrame
     JTextField accountNameInputUnlock = new JTextField ();
         //Buttons
     JButton unlock  = new JButton ("Unlock");
-    JButton prevPageUnlock = new JButton ("Back to Admin");
+    JButton backUnlock = new JButton ("Back");
         //Display Areas
     JTextArea infoAreaUnlock = new JTextArea ();
 
@@ -130,7 +130,7 @@ public class Login_Authenticator extends JFrame
     JPasswordField passwordInputConfirm = new JPasswordField ();
         //Buttons
     JButton resetPassword = new JButton("Reset");
-    JButton prevPageReset = new JButton ("Back");    
+    JButton backReset = new JButton ("Back");    
         //Display Areas
     JTextArea infoAreaReset = new JTextArea ();
     
@@ -159,7 +159,7 @@ public class Login_Authenticator extends JFrame
        
         //Setup the Parent Panel
         this.setLocationByPlatform(true);
-        setUndecorated(false);
+        setUndecorated(false);        
         setSize(490,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainLayout = new CardLayout();
@@ -204,7 +204,7 @@ public class Login_Authenticator extends JFrame
         accountNameInputUnlock.addKeyListener(loginEvent);
         accountNameInputUnlock.addFocusListener(loginEvent);
         unlock.addActionListener(loginEvent);
-        prevPageUnlock.addActionListener(loginEvent);
+        backUnlock.addActionListener(loginEvent);
         
             //Reset Pane Listeners
         passwordInputCurr.addKeyListener(loginEvent);
@@ -214,7 +214,7 @@ public class Login_Authenticator extends JFrame
         passwordInputConfirm.addKeyListener(loginEvent);
         passwordInputConfirm.addFocusListener(loginEvent);
         resetPassword.addActionListener(loginEvent);
-        prevPageReset.addActionListener(loginEvent);
+        backReset.addActionListener(loginEvent);
         
         //Setting up the Login Pane
         GridBagLayout masterLayoutLogin = new GridBagLayout();
@@ -653,8 +653,8 @@ public class Login_Authenticator extends JFrame
         cUnlock.ipady = 0;
         cUnlock.fill = GridBagConstraints.NONE;
         cUnlock.anchor = GridBagConstraints.SOUTH;
-        prevPageUnlock.setOpaque(true);
-        masterPaneUnlock.add(prevPageUnlock, cUnlock);
+        backUnlock.setOpaque(true);
+        masterPaneUnlock.add(backUnlock, cUnlock);
 
             //Adding Unlock Pane to CardLayout
         mainLayout.addLayoutComponent(masterPaneUnlock, "UnlockPane");
@@ -682,7 +682,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=1;
         cReset.gridheight=1;
         cReset.gridwidth=1;
-        cReset.insets = new Insets(0,0,10,0);
+        cReset.insets = new Insets(30,0,0,0);
         cReset.ipadx=0;
         passwordLabelCurr.setOpaque(false);
         passwordLabelCurr.setForeground(Color.white);
@@ -692,7 +692,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=1;
         cReset.gridheight=1;
         cReset.gridwidth=2;
-        cReset.insets = new Insets(0,0,10,0);
+        cReset.insets = new Insets(30,0,0,0);
         passwordInputCurr.setOpaque(true);
         passwordInputCurr.setForeground(Color.black);
         //passwordInputCurr.setText();
@@ -703,7 +703,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=2;
         cReset.gridheight=1;
         cReset.gridwidth=1;
-        cReset.insets = new Insets(0,0,0,0);
+        cReset.insets = new Insets(10,0,0,0);
         cReset.ipadx = 0;
         passwordLabelNew.setOpaque(false);
         passwordLabelNew.setForeground(Color.white);
@@ -713,7 +713,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=2;
         cReset.gridheight=1;
         cReset.gridwidth=2;
-        cReset.insets = new Insets(0,0,0,0);
+        cReset.insets = new Insets(10,0,0,0);
         passwordInputNew.setOpaque(true);
         passwordInputNew.setForeground(Color.black);
         passwordInputNew.setCaretColor(Color.black);
@@ -723,7 +723,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=3;
         cReset.gridheight=1;
         cReset.gridwidth=1;
-        cReset.insets = new Insets(0,0,0,0);
+        cReset.insets = new Insets(10,0,0,0);
         cReset.ipadx = 0;
         passwordLabelConfirm.setOpaque(false);
         passwordLabelConfirm.setForeground(Color.white);
@@ -733,7 +733,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridy=3;
         cReset.gridheight=1;
         cReset.gridwidth=2;
-        cReset.insets = new Insets(0,0,0,0);
+        cReset.insets = new Insets(10,0,0,0);
         passwordInputConfirm.setOpaque(true);
         passwordInputConfirm.setForeground(Color.black);
         passwordInputConfirm.setCaretColor(Color.black);
@@ -755,7 +755,7 @@ public class Login_Authenticator extends JFrame
         cReset.gridheight=1;
         cReset.gridwidth=2;
         cReset.fill= GridBagConstraints.BOTH;
-        cReset.ipady = 150;
+        cReset.ipady = 100;
         cReset.insets = new Insets(10,70,0,0);
         infoAreaReset.setOpaque(false);
         infoAreaReset.setForeground(Color.white);
@@ -765,15 +765,16 @@ public class Login_Authenticator extends JFrame
         masterPaneReset.add(infoAreaReset, cReset);
                         
         cReset.gridx=0;
-        cReset.gridy=7;
+        cReset.gridy=6;
         cReset.ipady = 0;
         cReset.insets = new Insets(0,0,30,30);
         cReset.gridheight=1;
         cReset.gridwidth=3;
         cReset.weighty = 0;
-        cReset.fill = GridBagConstraints.EAST;
-        prevPageReset.setOpaque(true);
-        masterPaneLogin.add(prevPageReset, cReset);
+        cReset.fill= GridBagConstraints.NONE;
+        cReset.anchor = GridBagConstraints.CENTER;
+        backReset.setOpaque(true);
+        masterPaneReset.add(backReset, cReset);
        
             //Adding Password Reset Pane to the CardLayout
         mainLayout.addLayoutComponent(masterPaneReset, "ResetPane");
@@ -816,7 +817,7 @@ public class Login_Authenticator extends JFrame
     } 
     
     final public void displayAdmin()
-    {        
+    {      
         paneHistory.push(currPane);
         currPane = "AdminPane";
         mainLayout.show(masterPaneAdmin.getParent(), "AdminPane");
