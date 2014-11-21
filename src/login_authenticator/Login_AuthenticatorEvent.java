@@ -69,8 +69,8 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                     case "UnlockPane":
                         gui.displayUnlock();
                         break;
-                    case "ResetPane":
-                        gui.displayReset();
+                    case "ChangePWPane":
+                        gui.displayChangePW();
                         break;
                 }
             break;
@@ -81,8 +81,8 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
             case "Logout":
                 logout();
                 break;
-            case "Password Reset":
-                gui.displayReset();
+            case "Change Password":
+                gui.displayChangePW();
                 break;
             case "Try Again":
                 gui.serverArea.setText("Connecting to Database ....");

@@ -90,7 +90,7 @@ public class Login_Authenticator extends JFrame
     JLabel adminLabel = new JLabel("Account Administration");
         //Buttons
     JButton unlockAdmin  = new JButton ("Unlock Account");
-    JButton resetPasswordAdmin = new JButton ("Password Reset");
+    JButton changePWAdmin = new JButton ("Change Password");
     JButton logoutAdmin = new JButton ("Logout");
     
     //Components for User Pane
@@ -99,7 +99,7 @@ public class Login_Authenticator extends JFrame
     JLabel masterPaneUser = new JLabel(backgroundUser);
     JLabel userLabel = new JLabel("Account ****");
         //Buttons
-    JButton resetPasswordUser = new JButton ("Password Reset");
+    JButton changePWUser = new JButton ("Change Password");
     JButton logoutUser = new JButton ("Logout");
     
     //Components for Unlock Pane
@@ -116,11 +116,11 @@ public class Login_Authenticator extends JFrame
         //Display Areas
     JTextArea infoAreaUnlock = new JTextArea ();
 
-    //Components for Password Reset Window
+    //Components for Change Password Window
         //Labels and Background
-    ImageIcon backgroundReset = new ImageIcon("background2.jpg");
-    JLabel masterPaneReset = new JLabel(backgroundReset);
-    JLabel resetLabel = new JLabel("Reset Password");
+    ImageIcon backgroundChangePW = new ImageIcon("background2.jpg");
+    JLabel masterPaneChangePW = new JLabel(backgroundChangePW);
+    JLabel changePWLabel = new JLabel("Change Password");
     JLabel passwordLabelCurr = new JLabel ("Current Password:");
     JLabel passwordLabelNew = new JLabel ("New Password:");
     JLabel passwordLabelConfirm = new JLabel ("Confirm Password:");
@@ -129,10 +129,10 @@ public class Login_Authenticator extends JFrame
     JPasswordField passwordInputNew = new JPasswordField ();
     JPasswordField passwordInputConfirm = new JPasswordField ();
         //Buttons
-    JButton resetPassword = new JButton("Reset");
-    JButton backReset = new JButton ("Back");    
+    JButton changePW = new JButton("Change");
+    JButton backChangePW = new JButton ("Back");    
         //Display Areas
-    JTextArea infoAreaReset = new JTextArea ();
+    JTextArea infoAreaChangePW = new JTextArea ();
     
     //Constructor
     public Login_Authenticator()  throws SQLException
@@ -193,11 +193,11 @@ public class Login_Authenticator extends JFrame
         
             //Admin Pane Listeners
         unlockAdmin.addActionListener(loginEvent);
-        resetPasswordAdmin.addActionListener(loginEvent);
+        changePWAdmin.addActionListener(loginEvent);
         logoutAdmin.addActionListener(loginEvent);
         
             //User Pane Listeners
-        resetPasswordUser.addActionListener(loginEvent);
+        changePWUser.addActionListener(loginEvent);
         logoutUser.addActionListener(loginEvent);
         
             //Unlock Pane Listeners
@@ -206,15 +206,15 @@ public class Login_Authenticator extends JFrame
         unlock.addActionListener(loginEvent);
         backUnlock.addActionListener(loginEvent);
         
-            //Reset Pane Listeners
+            //ChangePW Pane Listeners
         passwordInputCurr.addKeyListener(loginEvent);
         passwordInputCurr.addFocusListener(loginEvent);
         passwordInputNew.addKeyListener(loginEvent);
         passwordInputNew.addFocusListener(loginEvent);
         passwordInputConfirm.addKeyListener(loginEvent);
         passwordInputConfirm.addFocusListener(loginEvent);
-        resetPassword.addActionListener(loginEvent);
-        backReset.addActionListener(loginEvent);
+        changePW.addActionListener(loginEvent);
+        backChangePW.addActionListener(loginEvent);
         
         //Setting up the Login Pane
         GridBagLayout masterLayoutLogin = new GridBagLayout();
@@ -505,7 +505,7 @@ public class Login_Authenticator extends JFrame
         
         cAdmin.gridx=1;
         cAdmin.gridy=1;
-        cAdmin.insets = new Insets(70,100,0,0);
+        cAdmin.insets = new Insets(70,85,0,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
         cAdmin.weighty=0;
@@ -515,15 +515,15 @@ public class Login_Authenticator extends JFrame
         
         cAdmin.gridx=1;
         cAdmin.gridy=2;
-        cAdmin.insets = new Insets(20,100,0,0);
+        cAdmin.insets = new Insets(20,85,0,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
-        resetPasswordAdmin.setOpaque(true);
-        masterPaneAdmin.add(resetPasswordAdmin, cAdmin);
+        changePWAdmin.setOpaque(true);
+        masterPaneAdmin.add(changePWAdmin, cAdmin);
         
         cAdmin.gridx=1;
         cAdmin.gridy=3;
-        cAdmin.insets = new Insets(0,100,30,0);
+        cAdmin.insets = new Insets(0,85,30,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
         cAdmin.weighty = 1;
@@ -549,7 +549,7 @@ public class Login_Authenticator extends JFrame
         cUser.gridy=0;
         cUser.gridheight=1;
         cUser.gridwidth=3;
-        cUser.insets = new Insets(115,60,20,20);
+        cUser.insets = new Insets(115,45,20,20);
         userLabel.setFont(largeFont);
         userLabel.setOpaque(false);
         userLabel.setForeground(Color.white);
@@ -557,15 +557,15 @@ public class Login_Authenticator extends JFrame
         
         cUser.gridx=1;
         cUser.gridy=1;
-        cUser.insets = new Insets(40,80,0,0);
+        cUser.insets = new Insets(40,60,0,0);
         cUser.gridheight=1;
         cUser.gridwidth=1;
-        resetPasswordUser.setOpaque(true);
-        masterPaneUser.add(resetPasswordUser, cUser);
+        changePWUser.setOpaque(true);
+        masterPaneUser.add(changePWUser, cUser);
         
         cUser.gridx=1;
         cUser.gridy=3;
-        cUser.insets = new Insets(0,80,40,0);
+        cUser.insets = new Insets(0,60,40,0);
         cUser.gridheight=1;
         cUser.gridwidth=1;
         cUser.weighty = 1;
@@ -661,125 +661,125 @@ public class Login_Authenticator extends JFrame
             //Adding Unlock Pane to Parent Panel
         add(masterPaneUnlock);
 
-        //Setting up the Password Reset Pane
-        GridBagLayout masterLayoutReset = new GridBagLayout();
-        masterPaneReset.setLayout(masterLayoutReset);
-        GridBagConstraints cReset = new GridBagConstraints();
-        cReset.fill = GridBagConstraints.BOTH; 
+        //Setting up the Change Password Pane
+        GridBagLayout masterLayoutChangePW = new GridBagLayout();
+        masterPaneChangePW.setLayout(masterLayoutChangePW);
+        GridBagConstraints cChangePW = new GridBagConstraints();
+        cChangePW.fill = GridBagConstraints.BOTH; 
         
-            //Adding components to Login Pane
-        cReset.gridx=0;
-        cReset.gridy=0;
-        cReset.gridheight=1;
-        cReset.gridwidth=3;
-        cReset.insets = new Insets(110,85,20,20);
-        resetLabel.setFont(largeFont);
-        resetLabel.setOpaque(false);
-        resetLabel.setForeground(Color.white);
-        masterPaneReset.add(resetLabel, cReset);
+            //Adding components to ChangePW Pane
+        cChangePW.gridx=0;
+        cChangePW.gridy=0;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=3;
+        cChangePW.insets = new Insets(110,85,20,20);
+        changePWLabel.setFont(largeFont);
+        changePWLabel.setOpaque(false);
+        changePWLabel.setForeground(Color.white);
+        masterPaneChangePW.add(changePWLabel, cChangePW);
                 
-        cReset.gridx=0;
-        cReset.gridy=1;
-        cReset.gridheight=1;
-        cReset.gridwidth=1;
-        cReset.insets = new Insets(30,0,0,0);
-        cReset.ipadx=0;
+        cChangePW.gridx=0;
+        cChangePW.gridy=1;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=1;
+        cChangePW.insets = new Insets(30,0,0,0);
+        cChangePW.ipadx=0;
         passwordLabelCurr.setOpaque(false);
         passwordLabelCurr.setForeground(Color.white);
-        masterPaneReset.add(passwordLabelCurr, cReset);
+        masterPaneChangePW.add(passwordLabelCurr, cChangePW);
         
-        cReset.gridx=1;
-        cReset.gridy=1;
-        cReset.gridheight=1;
-        cReset.gridwidth=2;
-        cReset.insets = new Insets(30,0,0,0);
+        cChangePW.gridx=1;
+        cChangePW.gridy=1;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=2;
+        cChangePW.insets = new Insets(30,0,0,0);
         passwordInputCurr.setOpaque(true);
         passwordInputCurr.setForeground(Color.black);
         //passwordInputCurr.setText();
         passwordInputCurr.setCaretColor(Color.black);
-        masterPaneReset.add(passwordInputCurr, cReset);
+        masterPaneChangePW.add(passwordInputCurr, cChangePW);
                 
-        cReset.gridx=0;
-        cReset.gridy=2;
-        cReset.gridheight=1;
-        cReset.gridwidth=1;
-        cReset.insets = new Insets(10,0,0,0);
-        cReset.ipadx = 0;
+        cChangePW.gridx=0;
+        cChangePW.gridy=2;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=1;
+        cChangePW.insets = new Insets(10,0,0,0);
+        cChangePW.ipadx = 0;
         passwordLabelNew.setOpaque(false);
         passwordLabelNew.setForeground(Color.white);
-        masterPaneReset.add(passwordLabelNew, cReset);
+        masterPaneChangePW.add(passwordLabelNew, cChangePW);
                 
-        cReset.gridx=1;
-        cReset.gridy=2;
-        cReset.gridheight=1;
-        cReset.gridwidth=2;
-        cReset.insets = new Insets(10,0,0,0);
+        cChangePW.gridx=1;
+        cChangePW.gridy=2;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=2;
+        cChangePW.insets = new Insets(10,0,0,0);
         passwordInputNew.setOpaque(true);
         passwordInputNew.setForeground(Color.black);
         passwordInputNew.setCaretColor(Color.black);
-        masterPaneReset.add(passwordInputNew, cReset);
+        masterPaneChangePW.add(passwordInputNew, cChangePW);
                         
-        cReset.gridx=0;
-        cReset.gridy=3;
-        cReset.gridheight=1;
-        cReset.gridwidth=1;
-        cReset.insets = new Insets(10,0,0,0);
-        cReset.ipadx = 0;
+        cChangePW.gridx=0;
+        cChangePW.gridy=3;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=1;
+        cChangePW.insets = new Insets(10,0,0,0);
+        cChangePW.ipadx = 0;
         passwordLabelConfirm.setOpaque(false);
         passwordLabelConfirm.setForeground(Color.white);
-        masterPaneReset.add(passwordLabelConfirm, cReset);
+        masterPaneChangePW.add(passwordLabelConfirm, cChangePW);
                 
-        cReset.gridx=1;
-        cReset.gridy=3;
-        cReset.gridheight=1;
-        cReset.gridwidth=2;
-        cReset.insets = new Insets(10,0,0,0);
+        cChangePW.gridx=1;
+        cChangePW.gridy=3;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=2;
+        cChangePW.insets = new Insets(10,0,0,0);
         passwordInputConfirm.setOpaque(true);
         passwordInputConfirm.setForeground(Color.black);
         passwordInputConfirm.setCaretColor(Color.black);
-        masterPaneReset.add(passwordInputConfirm, cReset);
+        masterPaneChangePW.add(passwordInputConfirm, cChangePW);
         
-        cReset.gridx=1;
-        cReset.gridy=4;
-        cReset.insets = new Insets(25,45,0,20);
-        cReset.gridheight=1;
-        cReset.gridwidth=1;
-        cReset.weighty=0;
-        cReset.fill= GridBagConstraints.NONE;
-        resetPassword.setOpaque(true);
-        masterPaneReset.add(resetPassword, cReset);
+        cChangePW.gridx=1;
+        cChangePW.gridy=4;
+        cChangePW.insets = new Insets(25,45,0,20);
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=1;
+        cChangePW.weighty=0;
+        cChangePW.fill= GridBagConstraints.NONE;
+        changePW.setOpaque(true);
+        masterPaneChangePW.add(changePW, cChangePW);
                 
-        cReset.gridx=1;
-        cReset.gridy=5;
-        cReset.weighty = 1;
-        cReset.gridheight=1;
-        cReset.gridwidth=2;
-        cReset.fill= GridBagConstraints.BOTH;
-        cReset.ipady = 100;
-        cReset.insets = new Insets(10,70,0,0);
-        infoAreaReset.setOpaque(false);
-        infoAreaReset.setForeground(Color.white);
-        infoAreaReset.setEditable(false);
-        infoAreaReset.setLineWrap(true);
-        infoAreaReset.setWrapStyleWord(true);
-        masterPaneReset.add(infoAreaReset, cReset);
+        cChangePW.gridx=1;
+        cChangePW.gridy=5;
+        cChangePW.weighty = 1;
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=2;
+        cChangePW.fill= GridBagConstraints.BOTH;
+        cChangePW.ipady = 100;
+        cChangePW.insets = new Insets(10,70,0,0);
+        infoAreaChangePW.setOpaque(false);
+        infoAreaChangePW.setForeground(Color.white);
+        infoAreaChangePW.setEditable(false);
+        infoAreaChangePW.setLineWrap(true);
+        infoAreaChangePW.setWrapStyleWord(true);
+        masterPaneChangePW.add(infoAreaChangePW, cChangePW);
                         
-        cReset.gridx=0;
-        cReset.gridy=6;
-        cReset.ipady = 0;
-        cReset.insets = new Insets(0,0,30,30);
-        cReset.gridheight=1;
-        cReset.gridwidth=3;
-        cReset.weighty = 0;
-        cReset.fill= GridBagConstraints.NONE;
-        cReset.anchor = GridBagConstraints.CENTER;
-        backReset.setOpaque(true);
-        masterPaneReset.add(backReset, cReset);
+        cChangePW.gridx=0;
+        cChangePW.gridy=6;
+        cChangePW.ipady = 0;
+        cChangePW.insets = new Insets(0,0,30,30);
+        cChangePW.gridheight=1;
+        cChangePW.gridwidth=3;
+        cChangePW.weighty = 0;
+        cChangePW.fill= GridBagConstraints.NONE;
+        cChangePW.anchor = GridBagConstraints.CENTER;
+        backChangePW.setOpaque(true);
+        masterPaneChangePW.add(backChangePW, cChangePW);
        
-            //Adding Password Reset Pane to the CardLayout
-        mainLayout.addLayoutComponent(masterPaneReset, "ResetPane");
-            //Adding Login Pane to the Parent Panel
-        add(masterPaneReset);
+            //Adding ChangePW Pane to the CardLayout
+        mainLayout.addLayoutComponent(masterPaneChangePW, "ChangePWPane");
+            //Adding ChangePW Pane to the Parent Panel
+        add(masterPaneChangePW);
         
         //Checks to see if the connection to the DB was successful
         this.setResizable(false);
@@ -837,11 +837,11 @@ public class Login_Authenticator extends JFrame
         mainLayout.show(masterPaneUnlock.getParent(), "UnlockPane");
     } 
     
-    final public void displayReset()
+    final public void displayChangePW()
     {        
         paneHistory.push(currPane);
-        currPane = "ResetPane";
-        mainLayout.show(masterPaneUnlock.getParent(), "ResetPane");
+        currPane = "ChangePWPane";
+        mainLayout.show(masterPaneUnlock.getParent(), "ChangePWPane");
     } 
     
     public static void main(String[] args) throws SQLException
