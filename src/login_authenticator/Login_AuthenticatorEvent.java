@@ -5,7 +5,7 @@
  */
 package login_authenticator;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
+//import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 import java.awt.event.*;
 import java.sql.*;
 import java.security.*;
@@ -43,22 +43,48 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                 createAccount();
                 break;
             case "Back to Login":
+                gui.paneHistory.pop();
                 gui.displayLogin();
                 break;
-            case "Back to Admin":
-                gui.displayAdmin();
-                break;
+            case "Back":
+                String pane = (String)gui.paneHistory.pop();
+
+                switch (pane)
+                {
+                    case "LoginPane":
+                        gui.displayLogin();
+                        break;
+                    case "ServerPane":
+                        gui.displayServer();
+                        break;
+                    case "CreatePane":
+                        gui.displayCreate();
+                        break;
+                    case "AdminPane":
+                        gui.displayAdmin();
+                        break;
+                    case "UserPane":
+                        gui.displayUser();
+                        break;
+                    case "UnlockPane":
+                        gui.displayUnlock();
+                        break;
+                    case "ChangePWPane":
+                        gui.displayChangePW();
+                        break;
+                }
+            break;
+                
             case "Unlock Account":
                 gui.displayUnlock();
                 break;
             case "Logout":
                 logout();
                 break;
-            case "Password Reset":
-                gui.displayReset();
+            case "Change Password":
+                gui.displayChangePW();
                 break;
             case "Try Again":
-                //System.out.println("I'm seeing the action\n");
                 gui.serverArea.setText("Connecting to Database ....");
                 tryAgain();
                 break;
@@ -175,7 +201,6 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                     + gui.userName + "'; end;";
 
             gui.stmt.executeUpdate(gui.query);
-            //gui.unlock.setVisible(false);
             gui.login.setVisible(true);
             gui.query = "Account Successfully Unlocked!";
             gui.infoArea.setText(gui.query);
@@ -204,8 +229,6 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
             
         catch (SQLException a)
         {
-            //gui.query = "Cannot connect to the database";
-            //gui.serverArea.setText(gui.query);
             System.out.println("Exception being thrown\n" + a );
         };
         gui.query = "\nCannot connect to the database";
@@ -225,14 +248,11 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                 {
                     return;
                 }
-                //gui.userName = gui.accountNameInput.getText();
-                //gui.password = String.valueOf(gui.passwordInput.getPassword());
 
                 gui.query = "begin Login_SP(?,?,?,?,?); end;";
                 CallableStatement callStmt = gui.conn.prepareCall(gui.query);
 
                 gui.password = encryptPassword(gui.password);
-                //System.out.println("Password: "+ gui.password );
 
                 callStmt.setString(1, gui.userName);
                 callStmt.setString(2, gui.password);
@@ -302,7 +322,7 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
             CallableStatement callStmt = gui.conn.prepareCall(gui.query);
 
             callStmt.setString(1, gui.userNameActive);
-            callStmt.registerOutParameter(2, Type.INT);
+            callStmt.registerOutParameter(2, Types.INTEGER);
             callStmt.execute();
             gui.results = callStmt.getInt(2);
             
@@ -361,12 +381,6 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
 
                 gui.results = 1;
 
-                //gui.userName = gui.accountNameInputCr.getText();
-                //gui.password = String.valueOf(gui.passwordInputCr.getPassword());
-
-                //System.out.println("Password: "+ gui.password );
-                //System.out.println("Username: "+ gui.userName );
-
                 if (gui.userName.charAt(0) != Character.toUpperCase(gui.userName.charAt(0)) ||
                     gui.password.charAt(0) != Character.toUpperCase(gui.password.charAt(0)))
                     gui.results = 3;
@@ -379,7 +393,6 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                     CallableStatement callStmt = gui.conn.prepareCall(gui.query);
 
                     gui.password = encryptPassword(gui.password);
-                    System.out.println("Password: "+ gui.password );
 
                     callStmt.setString(1, gui.userName);
                     callStmt.setString(2, gui.password);
@@ -443,7 +456,6 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
         {
             ex.printStackTrace();
         }
-        System.out.println("Returning Password: " + PWord );
         return PWord;
     }
     
