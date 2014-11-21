@@ -5,7 +5,7 @@
  */
 package login_authenticator;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
+//import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 import java.awt.event.*;
 import java.sql.*;
 import java.security.*;
@@ -302,7 +302,7 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
             CallableStatement callStmt = gui.conn.prepareCall(gui.query);
 
             callStmt.setString(1, gui.userNameActive);
-            callStmt.registerOutParameter(2, Type.INT);
+            callStmt.registerOutParameter(2, Types.INTEGER);
             callStmt.execute();
             gui.results = callStmt.getInt(2);
             
