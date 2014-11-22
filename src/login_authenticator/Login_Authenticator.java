@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
+//////////////////////////////////////////////////
+//  Imports
+//////////////////////////////////////////////////
 package login_authenticator;
 import java.sql.*;
 import java.util.*;
@@ -10,137 +11,227 @@ import java.awt.*;
 import javax.swing.*;
 
 
-/**
- *
- * @author Jason
- */
 public class Login_Authenticator extends JFrame 
 {
     Login_AuthenticatorEvent loginEvent = new Login_AuthenticatorEvent(this);
  
+    //////////////////////////////////////////////////
     //Class Member Variables 
-    String userName;
-    String userNameActive;
-    String password;
-    String loginResult;
-    String accountType;
-    int results;
+    //////////////////////////////////////////////////
     String query;
     String url;
     int programState=1;
-    boolean reachable;
     CardLayout mainLayout;
-    String currPane= "LoginPane";
-    Stack paneHistory= new Stack();
-        
+
+    //////////////////////////////////////////////////    
     //Properties for creating connection to Oracle database
+    //////////////////////////////////////////////////
     Properties props = new Properties();
     Connection conn;
-    Statement stmt;
     
+    //////////////////////////////////////////////////
     //Components for Login Window
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundLogin = new ImageIcon("background.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundLogin = new ImageIcon("background5.jpg");
     JLabel masterPaneLogin = new JLabel(backgroundLogin);
     JLabel titleLabel = new JLabel("Account Login");
     JLabel accountNameLabel = new JLabel ("Account:");
     JLabel passwordLabel = new JLabel ("Password:  ");
+        //////////////////////////////////////////////////
         //Input fields
+        //////////////////////////////////////////////////
     JTextField accountNameInput = new JTextField ();
     JPasswordField passwordInput = new JPasswordField ();
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton login = new JButton("Login");
     JButton exit = new JButton ("Exit");
-    JButton createAccount = new JButton("Create Account");    
+    JButton createAccount = new JButton("Create Account"); 
+        //////////////////////////////////////////////////
         //Display Areas
+        //////////////////////////////////////////////////
     JTextArea infoArea = new JTextArea ();
     
+    //////////////////////////////////////////////////
     //Components for Server Connection
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundServer = new ImageIcon("background.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundServer = new ImageIcon("background5.jpg");
     JLabel masterPaneServer = new JLabel(backgroundServer);
     JLabel serverLabel = new JLabel("Login Server Unavailable");
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton tryAgain  = new JButton ("Try Again");
     JButton serverExit = new JButton ("Exit");
+        //////////////////////////////////////////////////
         //Display Areas
+        //////////////////////////////////////////////////
     JTextArea serverArea = new JTextArea ();
     
+    //////////////////////////////////////////////////
     //Components for Create Account
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundCreate = new ImageIcon("background.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundCreate = new ImageIcon("background5.jpg");
     JLabel masterPaneCreate = new JLabel(backgroundCreate);
     JLabel createLabel = new JLabel("Account Creation");
     JLabel accountNameLabelCr = new JLabel ("Account:");
     JLabel passwordLabelCr = new JLabel ("Password:  ");
+        //////////////////////////////////////////////////
         //Input fields
+        //////////////////////////////////////////////////
     JTextField accountNameInputCr = new JTextField ();
     JPasswordField passwordInputCr = new JPasswordField ();
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton create  = new JButton ("Create");
     JButton loginPage = new JButton ("Back to Login");
     JButton createExit = new JButton ("Exit");
+        //////////////////////////////////////////////////
         //Display Areas
+        //////////////////////////////////////////////////
     JTextArea infoAreaCr = new JTextArea ();
     
+    //////////////////////////////////////////////////
     //Components for Admin Pane
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundAdmin = new ImageIcon("background2.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundAdmin = new ImageIcon("background3.jpg");
     JLabel masterPaneAdmin = new JLabel(backgroundAdmin);
     JLabel adminLabel = new JLabel("Account Administration");
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton unlockAdmin  = new JButton ("Unlock Account");
     JButton changePWAdmin = new JButton ("Change Password");
     JButton logoutAdmin = new JButton ("Logout");
     
+    //////////////////////////////////////////////////
     //Components for User Pane
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundUser = new ImageIcon("background2.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundUser = new ImageIcon("background3.jpg");
     JLabel masterPaneUser = new JLabel(backgroundUser);
     JLabel userLabel = new JLabel("Account ****");
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton changePWUser = new JButton ("Change Password");
     JButton logoutUser = new JButton ("Logout");
     
+    //////////////////////////////////////////////////
     //Components for Unlock Pane
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundUnlock = new ImageIcon("background2.jpg");
+        //////////////////////////////////////////////////
+    ImageIcon backgroundUnlock = new ImageIcon("background3.jpg");
     JLabel masterPaneUnlock = new JLabel(backgroundUnlock);
     JLabel unlockLabel = new JLabel("Account Lock Management");
-    JLabel accountNameLabelUnlock = new JLabel ("Account:");
+    JLabel accountNameLabelUnlock = new JLabel ("Account:  ");
+        //////////////////////////////////////////////////
         //Input fields
+        //////////////////////////////////////////////////
     JTextField accountNameInputUnlock = new JTextField ();
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton unlock  = new JButton ("Unlock");
     JButton backUnlock = new JButton ("Back");
+        //////////////////////////////////////////////////
         //Display Areas
+        //////////////////////////////////////////////////
     JTextArea infoAreaUnlock = new JTextArea ();
 
-    //Components for Change Password Window
+    //////////////////////////////////////////////////
+    //Components for Change Password Window for User
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
         //Labels and Background
-    ImageIcon backgroundChangePW = new ImageIcon("background2.jpg");
-    JLabel masterPaneChangePW = new JLabel(backgroundChangePW);
+        //////////////////////////////////////////////////
+    ImageIcon backgroundChangePW = new ImageIcon("background3.jpg");
+    JLabel masterPaneChangePWU = new JLabel(backgroundChangePW);
     JLabel changePWLabel = new JLabel("Change Password");
-    JLabel passwordLabelCurr = new JLabel ("Current Password:");
-    JLabel passwordLabelNew = new JLabel ("New Password:");
-    JLabel passwordLabelConfirm = new JLabel ("Confirm Password:");
+    JLabel passwordLabelCurr = new JLabel ("Current Password: ");
+    JLabel passwordLabelNew = new JLabel ("New Password: ");
+    JLabel passwordLabelConfirm = new JLabel ("Confirm Password: ");
+        //////////////////////////////////////////////////
         //Input fields
+        //////////////////////////////////////////////////
     JPasswordField passwordInputCurr = new JPasswordField ();
     JPasswordField passwordInputNew = new JPasswordField ();
     JPasswordField passwordInputConfirm = new JPasswordField ();
+        //////////////////////////////////////////////////
         //Buttons
+        //////////////////////////////////////////////////
     JButton changePW = new JButton("Change");
     JButton backChangePW = new JButton ("Back");    
+        //////////////////////////////////////////////////
         //Display Areas
+        //////////////////////////////////////////////////
     JTextArea infoAreaChangePW = new JTextArea ();
     
+    //////////////////////////////////////////////////
+    //Components for Change Password Window for Admin
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
+        //Labels and Background
+        //////////////////////////////////////////////////
+    ImageIcon backgroundChangePWAdmin = new ImageIcon("background3.jpg");
+    JLabel masterPaneChangePWA = new JLabel(backgroundChangePWAdmin);
+    JLabel changePWALabel = new JLabel("Change Password");
+    JLabel accountNameLabelA = new JLabel ("Account: ");
+    JLabel passwordLabelANew = new JLabel ("New Password: ");
+    JLabel passwordLabelAConfirm = new JLabel ("Confirm Password: ");
+        //////////////////////////////////////////////////
+        //Input fields
+        //////////////////////////////////////////////////
+    JTextField accountNameInputA = new JTextField ();
+    JPasswordField passwordInputANew = new JPasswordField ();
+    JPasswordField passwordInputAConfirm = new JPasswordField ();
+        //////////////////////////////////////////////////
+        //Buttons
+        //////////////////////////////////////////////////
+    JButton changePWA = new JButton("Change");
+    JButton backChangePWA = new JButton ("Back");    
+        //////////////////////////////////////////////////
+        //Display Areas
+        //////////////////////////////////////////////////
+    JTextArea infoAreaChangePWA = new JTextArea ();
+    
+    //////////////////////////////////////////////////
     //Constructor
+    //////////////////////////////////////////////////
     public Login_Authenticator()  throws SQLException
     { 
         
         super();
         
+        //////////////////////////////////////////////////
         //Setup for Connection with the Database
+        //////////////////////////////////////////////////
         url = "jdbc:oracle:thin:@cncsidb01.msudenver.edu:1521:DB01";
         props.setProperty("user", "S900821204");
         props.setProperty("password", "Shadowz#2");        
@@ -149,7 +240,8 @@ public class Login_Authenticator extends JFrame
         {
             //creating connection to Oracle database using JDBC
             conn = DriverManager.getConnection(url,props);
-            stmt = conn.createStatement();
+            //Statement stmt = conn.createStatement();
+            //stmt = conn.createStatement();
         }
         catch(SQLException a)
         {
@@ -157,9 +249,12 @@ public class Login_Authenticator extends JFrame
             programState = 2;
         }
        
+        //////////////////////////////////////////////////
         //Setup the Parent Panel
-        this.setLocationByPlatform(true);
-        setUndecorated(false);        
+        //////////////////////////////////////////////////
+        
+        this.setLocationRelativeTo(null);
+        setUndecorated(true);        
         setSize(490,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainLayout = new CardLayout();
@@ -168,8 +263,19 @@ public class Login_Authenticator extends JFrame
         //Create a font to use in Headers
         Font largeFont = new Font("Dialog", Font.BOLD, 18);
         
+        //////////////////////////////////////////////////
         //Add Listeners
+        //////////////////////////////////////////////////
+    
+            //////////////////////////////////////////////////
+            // Main Panel Listener
+            //////////////////////////////////////////////////
+        addMouseListener(loginEvent);
+        addMouseMotionListener(loginEvent);
+        
+            //////////////////////////////////////////////////
             //Input Pane Listeners
+            //////////////////////////////////////////////////
         accountNameInput.addKeyListener(loginEvent);
         accountNameInput.addFocusListener(loginEvent);
         passwordInput.addKeyListener(loginEvent);
@@ -178,11 +284,15 @@ public class Login_Authenticator extends JFrame
         exit.addActionListener(loginEvent);
         createAccount.addActionListener(loginEvent);
 
+            //////////////////////////////////////////////////
             //Server Pane Listeners
+            //////////////////////////////////////////////////
         tryAgain.addActionListener(loginEvent);
         serverExit.addActionListener(loginEvent);
         
+            //////////////////////////////////////////////////
             //Create Pane Listeners
+            //////////////////////////////////////////////////
         accountNameInputCr.addKeyListener(loginEvent);
         accountNameInputCr.addFocusListener(loginEvent);
         passwordInputCr.addKeyListener(loginEvent);
@@ -191,22 +301,30 @@ public class Login_Authenticator extends JFrame
         createExit.addActionListener(loginEvent);
         create.addActionListener(loginEvent);
         
+            //////////////////////////////////////////////////
             //Admin Pane Listeners
+            //////////////////////////////////////////////////
         unlockAdmin.addActionListener(loginEvent);
         changePWAdmin.addActionListener(loginEvent);
         logoutAdmin.addActionListener(loginEvent);
         
+            //////////////////////////////////////////////////
             //User Pane Listeners
+            //////////////////////////////////////////////////
         changePWUser.addActionListener(loginEvent);
         logoutUser.addActionListener(loginEvent);
-        
+    
+            //////////////////////////////////////////////////
             //Unlock Pane Listeners
+            //////////////////////////////////////////////////
         accountNameInputUnlock.addKeyListener(loginEvent);
         accountNameInputUnlock.addFocusListener(loginEvent);
         unlock.addActionListener(loginEvent);
         backUnlock.addActionListener(loginEvent);
         
-            //ChangePW Pane Listeners
+            //////////////////////////////////////////////////
+            //ChangePWU Pane Listeners
+            //////////////////////////////////////////////////
         passwordInputCurr.addKeyListener(loginEvent);
         passwordInputCurr.addFocusListener(loginEvent);
         passwordInputNew.addKeyListener(loginEvent);
@@ -216,19 +334,35 @@ public class Login_Authenticator extends JFrame
         changePW.addActionListener(loginEvent);
         backChangePW.addActionListener(loginEvent);
         
+            //////////////////////////////////////////////////
+            //ChangePWA Pane Listeners
+            //////////////////////////////////////////////////
+        accountNameInputA.addKeyListener(loginEvent);
+        accountNameInputA.addFocusListener(loginEvent);
+        passwordInputANew.addKeyListener(loginEvent);
+        passwordInputANew.addFocusListener(loginEvent);
+        passwordInputAConfirm.addKeyListener(loginEvent);
+        passwordInputAConfirm.addFocusListener(loginEvent);
+        changePWA.addActionListener(loginEvent);
+        backChangePWA.addActionListener(loginEvent);
+        
+        //////////////////////////////////////////////////
         //Setting up the Login Pane
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutLogin = new GridBagLayout();
         masterPaneLogin.setLayout(masterLayoutLogin);
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH; 
         c.weighty = 0;
         
+            //////////////////////////////////////////////////
             //Adding components to Login Pane
+            //////////////////////////////////////////////////
         c.gridx=0;
         c.gridy=0;
         c.gridheight=1;
         c.gridwidth=3;
-        c.insets = new Insets(110,85,20,20);
+        c.insets = new Insets(130,85,20,20);
         titleLabel.setFont(largeFont);
         titleLabel.setOpaque(false);
         titleLabel.setForeground(Color.white);
@@ -311,7 +445,7 @@ public class Login_Authenticator extends JFrame
         c.gridx=0;
         c.gridy=7;
         c.ipady = 0;
-        c.insets = new Insets(0,0,30,30);
+        c.insets = new Insets(0,0,30,0);
         c.gridheight=1;
         c.gridwidth=3;
         c.weighty = 0;
@@ -324,18 +458,21 @@ public class Login_Authenticator extends JFrame
             //Adding Login Pane to the Parent Panel
         add(masterPaneLogin);
         
+        //////////////////////////////////////////////////
         //Building the Pane for Server
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutServer = new GridBagLayout();
         masterPaneServer.setLayout(masterLayoutServer);
         GridBagConstraints cServ = new GridBagConstraints();
         cServ.fill = GridBagConstraints.BOTH;  
-        
+            //////////////////////////////////////////////////
             //Adding Components to Server Pane
+            //////////////////////////////////////////////////
         cServ.gridx=0;
         cServ.gridy=0;
         cServ.gridheight=1;
         cServ.gridwidth=3;
-        cServ.insets = new Insets(110,60,20,20);
+        cServ.insets = new Insets(130,60,20,20);
         serverLabel.setFont(largeFont);
         serverLabel.setOpaque(false);
         serverLabel.setForeground(Color.white);
@@ -378,19 +515,23 @@ public class Login_Authenticator extends JFrame
             //Adding Server Pane to Parent Panel
         add(masterPaneServer);
         
+        //////////////////////////////////////////////////
         //Building the Pane for Create
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutCreate = new GridBagLayout();
         masterPaneCreate.setLayout(masterLayoutCreate);
         GridBagConstraints cCr = new GridBagConstraints();
         cCr.fill = GridBagConstraints.BOTH; 
                
+            //////////////////////////////////////////////////
             //Adding Components to Create Pane
+            //////////////////////////////////////////////////
         cCr.gridx=0;
         cCr.gridy=0;
         cCr.weighty = 0;
         cCr.gridheight=1;
         cCr.gridwidth=3;
-        cCr.insets = new Insets(110,85,20,20);
+        cCr.insets = new Insets(130,85,20,20);
         createLabel.setFont(largeFont);
         createLabel.setOpaque(false);
         createLabel.setForeground(Color.white);
@@ -472,7 +613,7 @@ public class Login_Authenticator extends JFrame
 
         cCr.gridx=0;
         cCr.gridy=6;
-        cCr.insets = new Insets(0,0,30,30);
+        cCr.insets = new Insets(0,0,30,0);
         cCr.gridheight=1;
         cCr.gridwidth=3;
         cCr.weighty = 0;
@@ -486,26 +627,31 @@ public class Login_Authenticator extends JFrame
             //Add Create Pane to Parent Panel
         add(masterPaneCreate);
         
+        //////////////////////////////////////////////////
         //Building the Pane for Admin
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutAdmin = new GridBagLayout();
         masterPaneAdmin.setLayout(masterLayoutAdmin);
         GridBagConstraints cAdmin = new GridBagConstraints();
-        cAdmin.fill = GridBagConstraints.BOTH;  
+        cAdmin.fill = GridBagConstraints.BOTH;
+        cAdmin.anchor = GridBagConstraints.CENTER;
         
+            //////////////////////////////////////////////////
             //Adding Components to Admin Pane
+            //////////////////////////////////////////////////
         cAdmin.gridx=0;
         cAdmin.gridy=0;
         cAdmin.gridheight=1;
-        cAdmin.gridwidth=3;
-        cAdmin.insets = new Insets(110,60,20,20);
+        cAdmin.gridwidth=1;
+        cAdmin.insets = new Insets(120,0,0,0);
         adminLabel.setFont(largeFont);
         adminLabel.setOpaque(false);
         adminLabel.setForeground(Color.white);
         masterPaneAdmin.add(adminLabel, cAdmin);
         
-        cAdmin.gridx=1;
+        cAdmin.gridx=0;
         cAdmin.gridy=1;
-        cAdmin.insets = new Insets(70,85,0,0);
+        cAdmin.insets = new Insets(70,0,0,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
         cAdmin.weighty=0;
@@ -513,17 +659,17 @@ public class Login_Authenticator extends JFrame
         unlockAdmin.setOpaque(true);
         masterPaneAdmin.add(unlockAdmin, cAdmin);
         
-        cAdmin.gridx=1;
+        cAdmin.gridx=0;
         cAdmin.gridy=2;
-        cAdmin.insets = new Insets(20,85,0,0);
+        cAdmin.insets = new Insets(20,0,0,0);
         cAdmin.gridheight=1;
-        cAdmin.gridwidth=1;
+        cAdmin.gridwidth=3;
         changePWAdmin.setOpaque(true);
         masterPaneAdmin.add(changePWAdmin, cAdmin);
         
-        cAdmin.gridx=1;
+        cAdmin.gridx=0;
         cAdmin.gridy=3;
-        cAdmin.insets = new Insets(0,85,30,0);
+        cAdmin.insets = new Insets(0,0,30,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
         cAdmin.weighty = 1;
@@ -548,28 +694,28 @@ public class Login_Authenticator extends JFrame
         cUser.gridx=0;
         cUser.gridy=0;
         cUser.gridheight=1;
-        cUser.gridwidth=3;
-        cUser.insets = new Insets(115,45,20,20);
+        cUser.gridwidth=1;
+        cUser.insets = new Insets(125,0,0,0);
+        cUser.anchor = GridBagConstraints.CENTER;
         userLabel.setFont(largeFont);
         userLabel.setOpaque(false);
         userLabel.setForeground(Color.white);
         masterPaneUser.add(userLabel, cUser);
         
-        cUser.gridx=1;
+        cUser.gridx=0;
         cUser.gridy=1;
-        cUser.insets = new Insets(40,60,0,0);
+        cUser.insets = new Insets(100,0,0,0);
         cUser.gridheight=1;
         cUser.gridwidth=1;
         changePWUser.setOpaque(true);
         masterPaneUser.add(changePWUser, cUser);
         
-        cUser.gridx=1;
-        cUser.gridy=3;
-        cUser.insets = new Insets(0,60,40,0);
+        cUser.gridx=0;
+        cUser.gridy=2;
+        cUser.insets = new Insets(0,0,30,0);
         cUser.gridheight=1;
         cUser.gridwidth=1;
         cUser.weighty = 1;
-        cUser.ipady = 0;
         cUser.fill = GridBagConstraints.NONE;
         cUser.anchor = GridBagConstraints.SOUTH;
         logoutUser.setOpaque(true);
@@ -580,18 +726,23 @@ public class Login_Authenticator extends JFrame
             //Adding User Pane to Parent Panel
         add(masterPaneUser);
         
+        //////////////////////////////////////////////////
         //Building the Pane for Unlock
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutUnlock = new GridBagLayout();
         masterPaneUnlock.setLayout(masterLayoutUnlock);
         GridBagConstraints cUnlock = new GridBagConstraints();
-        cUnlock.fill = GridBagConstraints.BOTH;  
+        cUnlock.fill = GridBagConstraints.BOTH; 
+        cUnlock.anchor = GridBagConstraints.CENTER;
         
+            //////////////////////////////////////////////////
             //Adding Components to Unlock Pane
+            //////////////////////////////////////////////////
         cUnlock.gridx=0;
         cUnlock.gridy=0;
         cUnlock.gridheight=1;
-        cUnlock.gridwidth=3;
-        cUnlock.insets = new Insets(110,60,20,20);
+        cUnlock.gridwidth=2;
+        cUnlock.insets = new Insets(120,0,0,00);
         unlockLabel.setFont(largeFont);
         unlockLabel.setOpaque(false);
         unlockLabel.setForeground(Color.white);
@@ -602,9 +753,10 @@ public class Login_Authenticator extends JFrame
         cUnlock.gridy=1;
         cUnlock.gridheight=1;
         cUnlock.gridwidth=1;
-        cUnlock.insets = new Insets(40,0,10,0);
+        cUnlock.insets = new Insets(100,0,0,0);
         cUnlock.ipadx=0;
-        accountNameLabelUnlock.setOpaque(true);
+        cUnlock.fill = GridBagConstraints.HORIZONTAL;  
+        accountNameLabelUnlock.setOpaque(false);
         accountNameLabelUnlock.setBackground(Color.black);
         accountNameLabelUnlock.setForeground(Color.white);
         masterPaneUnlock.add(accountNameLabelUnlock, cUnlock);
@@ -613,7 +765,7 @@ public class Login_Authenticator extends JFrame
         cUnlock.gridy=1;
         cUnlock.gridheight=1;
         cUnlock.gridwidth=2;
-        cUnlock.insets = new Insets(40,0,10,0);
+        cUnlock.insets = new Insets(100,0,0,0);
         accountNameInputUnlock.setOpaque(true);
         accountNameInputUnlock.setForeground(Color.black);
         accountNameInputUnlock.setCaretColor(Color.black);
@@ -621,14 +773,14 @@ public class Login_Authenticator extends JFrame
         
         cUnlock.gridx=1;
         cUnlock.gridy=2;
-        cUnlock.insets = new Insets(30,65,0,0);
+        cUnlock.insets = new Insets(30,0,0,0);
         cUnlock.gridheight=1;
         cUnlock.gridwidth=1;
         cUnlock.fill= GridBagConstraints.NONE;
         unlock.setOpaque(true);
         masterPaneUnlock.add(unlock, cUnlock);
         
-        cUnlock.gridx=1;
+        cUnlock.gridx=0;
         cUnlock.gridy=3;
         cUnlock.weighty = 1;
         cUnlock.gridheight=1;
@@ -644,11 +796,11 @@ public class Login_Authenticator extends JFrame
         infoAreaUnlock.setWrapStyleWord(true);
         masterPaneUnlock.add(infoAreaUnlock, cUnlock);
         
-        cUnlock.gridx=1;
+        cUnlock.gridx=0;
         cUnlock.gridy=4;
-        cUnlock.insets = new Insets(0,65,30,0);
+        cUnlock.insets = new Insets(0,0,30,0);
         cUnlock.gridheight=1;
-        cUnlock.gridwidth=1;
+        cUnlock.gridwidth=2;
         cUnlock.weighty = 0;
         cUnlock.ipady = 0;
         cUnlock.fill = GridBagConstraints.NONE;
@@ -661,63 +813,67 @@ public class Login_Authenticator extends JFrame
             //Adding Unlock Pane to Parent Panel
         add(masterPaneUnlock);
 
-        //Setting up the Change Password Pane
+        //////////////////////////////////////////////////
+        //Setting up the Change Password Pane for User
+        //////////////////////////////////////////////////
         GridBagLayout masterLayoutChangePW = new GridBagLayout();
-        masterPaneChangePW.setLayout(masterLayoutChangePW);
+        masterPaneChangePWU.setLayout(masterLayoutChangePW);
         GridBagConstraints cChangePW = new GridBagConstraints();
         cChangePW.fill = GridBagConstraints.BOTH; 
         
-            //Adding components to ChangePW Pane
+            //////////////////////////////////////////////////
+            //Adding components to ChangePWU Pane
+            //////////////////////////////////////////////////
         cChangePW.gridx=0;
         cChangePW.gridy=0;
         cChangePW.gridheight=1;
         cChangePW.gridwidth=3;
-        cChangePW.insets = new Insets(110,85,20,20);
+        cChangePW.insets = new Insets(120,55,20,20);
         changePWLabel.setFont(largeFont);
         changePWLabel.setOpaque(false);
         changePWLabel.setForeground(Color.white);
-        masterPaneChangePW.add(changePWLabel, cChangePW);
+        masterPaneChangePWU.add(changePWLabel, cChangePW);
                 
         cChangePW.gridx=0;
         cChangePW.gridy=1;
         cChangePW.gridheight=1;
         cChangePW.gridwidth=1;
-        cChangePW.insets = new Insets(30,0,0,0);
+        cChangePW.insets = new Insets(50,0,0,0);
         cChangePW.ipadx=0;
         passwordLabelCurr.setOpaque(false);
         passwordLabelCurr.setForeground(Color.white);
-        masterPaneChangePW.add(passwordLabelCurr, cChangePW);
+        masterPaneChangePWU.add(passwordLabelCurr, cChangePW);
         
         cChangePW.gridx=1;
         cChangePW.gridy=1;
         cChangePW.gridheight=1;
         cChangePW.gridwidth=2;
-        cChangePW.insets = new Insets(30,0,0,0);
+        cChangePW.insets = new Insets(50,0,0,0);
         passwordInputCurr.setOpaque(true);
         passwordInputCurr.setForeground(Color.black);
         //passwordInputCurr.setText();
         passwordInputCurr.setCaretColor(Color.black);
-        masterPaneChangePW.add(passwordInputCurr, cChangePW);
+        masterPaneChangePWU.add(passwordInputCurr, cChangePW);
                 
         cChangePW.gridx=0;
         cChangePW.gridy=2;
         cChangePW.gridheight=1;
         cChangePW.gridwidth=1;
-        cChangePW.insets = new Insets(10,0,0,0);
+        cChangePW.insets = new Insets(20,0,0,0);
         cChangePW.ipadx = 0;
         passwordLabelNew.setOpaque(false);
         passwordLabelNew.setForeground(Color.white);
-        masterPaneChangePW.add(passwordLabelNew, cChangePW);
+        masterPaneChangePWU.add(passwordLabelNew, cChangePW);
                 
         cChangePW.gridx=1;
         cChangePW.gridy=2;
         cChangePW.gridheight=1;
         cChangePW.gridwidth=2;
-        cChangePW.insets = new Insets(10,0,0,0);
+        cChangePW.insets = new Insets(20,0,0,0);
         passwordInputNew.setOpaque(true);
         passwordInputNew.setForeground(Color.black);
         passwordInputNew.setCaretColor(Color.black);
-        masterPaneChangePW.add(passwordInputNew, cChangePW);
+        masterPaneChangePWU.add(passwordInputNew, cChangePW);
                         
         cChangePW.gridx=0;
         cChangePW.gridy=3;
@@ -727,7 +883,7 @@ public class Login_Authenticator extends JFrame
         cChangePW.ipadx = 0;
         passwordLabelConfirm.setOpaque(false);
         passwordLabelConfirm.setForeground(Color.white);
-        masterPaneChangePW.add(passwordLabelConfirm, cChangePW);
+        masterPaneChangePWU.add(passwordLabelConfirm, cChangePW);
                 
         cChangePW.gridx=1;
         cChangePW.gridy=3;
@@ -737,7 +893,7 @@ public class Login_Authenticator extends JFrame
         passwordInputConfirm.setOpaque(true);
         passwordInputConfirm.setForeground(Color.black);
         passwordInputConfirm.setCaretColor(Color.black);
-        masterPaneChangePW.add(passwordInputConfirm, cChangePW);
+        masterPaneChangePWU.add(passwordInputConfirm, cChangePW);
         
         cChangePW.gridx=1;
         cChangePW.gridy=4;
@@ -747,7 +903,7 @@ public class Login_Authenticator extends JFrame
         cChangePW.weighty=0;
         cChangePW.fill= GridBagConstraints.NONE;
         changePW.setOpaque(true);
-        masterPaneChangePW.add(changePW, cChangePW);
+        masterPaneChangePWU.add(changePW, cChangePW);
                 
         cChangePW.gridx=1;
         cChangePW.gridy=5;
@@ -756,32 +912,158 @@ public class Login_Authenticator extends JFrame
         cChangePW.gridwidth=2;
         cChangePW.fill= GridBagConstraints.BOTH;
         cChangePW.ipady = 100;
-        cChangePW.insets = new Insets(10,70,0,0);
+        cChangePW.insets = new Insets(10,0,0,0);
         infoAreaChangePW.setOpaque(false);
         infoAreaChangePW.setForeground(Color.white);
         infoAreaChangePW.setEditable(false);
         infoAreaChangePW.setLineWrap(true);
         infoAreaChangePW.setWrapStyleWord(true);
-        masterPaneChangePW.add(infoAreaChangePW, cChangePW);
+        masterPaneChangePWU.add(infoAreaChangePW, cChangePW);
                         
         cChangePW.gridx=0;
         cChangePW.gridy=6;
         cChangePW.ipady = 0;
-        cChangePW.insets = new Insets(0,0,30,30);
+        cChangePW.insets = new Insets(0,0,30,0);
         cChangePW.gridheight=1;
         cChangePW.gridwidth=3;
         cChangePW.weighty = 0;
         cChangePW.fill= GridBagConstraints.NONE;
         cChangePW.anchor = GridBagConstraints.CENTER;
         backChangePW.setOpaque(true);
-        masterPaneChangePW.add(backChangePW, cChangePW);
+        masterPaneChangePWU.add(backChangePW, cChangePW);
        
-            //Adding ChangePW Pane to the CardLayout
-        mainLayout.addLayoutComponent(masterPaneChangePW, "ChangePWPane");
-            //Adding ChangePW Pane to the Parent Panel
-        add(masterPaneChangePW);
+            //Adding ChangePWU Pane to the CardLayout
+        mainLayout.addLayoutComponent(masterPaneChangePWU, "ChangePWUPane");
+            //Adding ChangePWU Pane to the Parent Panel
+        add(masterPaneChangePWU);
         
+        //////////////////////////////////////////////////
+        //Setting up the Change Password Pane for Admin
+        //////////////////////////////////////////////////
+        GridBagLayout masterLayoutChangePWAdmin = new GridBagLayout();
+        masterPaneChangePWA.setLayout(masterLayoutChangePWAdmin);
+        GridBagConstraints cChangePWA = new GridBagConstraints();
+        cChangePWA.fill = GridBagConstraints.BOTH; 
+        
+            //////////////////////////////////////////////////
+            //Adding components to ChangePWA Pane
+            //////////////////////////////////////////////////
+        cChangePWA.gridx=0;
+        cChangePWA.gridy=0;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=3;
+        cChangePWA.insets = new Insets(120,55,20,20);
+        changePWALabel.setFont(largeFont);
+        changePWALabel.setOpaque(false);
+        changePWALabel.setForeground(Color.white);
+        masterPaneChangePWA.add(changePWALabel, cChangePWA);
+                
+        cChangePWA.gridx=0;
+        cChangePWA.gridy=1;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=1;
+        cChangePWA.insets = new Insets(50,0,0,0);
+        cChangePWA.ipadx=0;
+        accountNameLabelA.setOpaque(false);
+        accountNameLabelA.setForeground(Color.white);
+        masterPaneChangePWA.add(accountNameLabelA, cChangePWA);
+        
+        cChangePWA.gridx=1;
+        cChangePWA.gridy=1;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=2;
+        cChangePWA.insets = new Insets(50,0,0,0);
+        accountNameInputA.setOpaque(true);
+        accountNameInputA.setForeground(Color.black);
+        //passwordInputCurr.setText();
+        accountNameInputA.setCaretColor(Color.black);
+        masterPaneChangePWA.add(accountNameInputA, cChangePWA);
+                
+        cChangePWA.gridx=0;
+        cChangePWA.gridy=2;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=1;
+        cChangePWA.insets = new Insets(20,0,0,0);
+        cChangePWA.ipadx = 0;
+        passwordLabelANew.setOpaque(false);
+        passwordLabelANew.setForeground(Color.white);
+        masterPaneChangePWA.add(passwordLabelANew, cChangePWA);
+                
+        cChangePWA.gridx=1;
+        cChangePWA.gridy=2;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=2;
+        cChangePWA.insets = new Insets(20,0,0,0);
+        passwordInputANew.setOpaque(true);
+        passwordInputANew.setForeground(Color.black);
+        passwordInputANew.setCaretColor(Color.black);
+        masterPaneChangePWA.add(passwordInputANew, cChangePWA);
+                        
+        cChangePWA.gridx=0;
+        cChangePWA.gridy=3;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=1;
+        cChangePWA.insets = new Insets(10,0,0,0);
+        cChangePWA.ipadx = 0;
+        passwordLabelAConfirm.setOpaque(false);
+        passwordLabelAConfirm.setForeground(Color.white);
+        masterPaneChangePWA.add(passwordLabelAConfirm, cChangePWA);
+                
+        cChangePWA.gridx=1;
+        cChangePWA.gridy=3;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=2;
+        cChangePWA.insets = new Insets(10,0,0,0);
+        passwordInputAConfirm.setOpaque(true);
+        passwordInputAConfirm.setForeground(Color.black);
+        passwordInputAConfirm.setCaretColor(Color.black);
+        masterPaneChangePWA.add(passwordInputAConfirm, cChangePWA);
+        
+        cChangePWA.gridx=1;
+        cChangePWA.gridy=4;
+        cChangePWA.insets = new Insets(25,45,0,20);
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=1;
+        cChangePWA.weighty=0;
+        cChangePWA.fill= GridBagConstraints.NONE;
+        changePWA.setOpaque(true);
+        masterPaneChangePWA.add(changePWA, cChangePWA);
+                
+        cChangePWA.gridx=1;
+        cChangePWA.gridy=5;
+        cChangePWA.weighty = 1;
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=2;
+        cChangePWA.fill= GridBagConstraints.BOTH;
+        cChangePWA.ipady = 100;
+        cChangePWA.insets = new Insets(10,0,0,0);
+        infoAreaChangePWA.setOpaque(false);
+        infoAreaChangePWA.setForeground(Color.white);
+        infoAreaChangePWA.setEditable(false);
+        infoAreaChangePWA.setLineWrap(true);
+        infoAreaChangePWA.setWrapStyleWord(true);
+        masterPaneChangePWA.add(infoAreaChangePWA, cChangePWA);
+                        
+        cChangePWA.gridx=0;
+        cChangePWA.gridy=6;
+        cChangePWA.ipady = 0;
+        cChangePWA.insets = new Insets(0,0,30,0);
+        cChangePWA.gridheight=1;
+        cChangePWA.gridwidth=3;
+        cChangePWA.weighty = 0;
+        cChangePWA.fill= GridBagConstraints.NONE;
+        cChangePWA.anchor = GridBagConstraints.CENTER;
+        backChangePWA.setOpaque(true);
+        masterPaneChangePWA.add(backChangePWA, cChangePWA);
+       
+            //Adding ChangePWA Pane to the CardLayout
+        mainLayout.addLayoutComponent(masterPaneChangePWA, "ChangePWAPane");
+            //Adding ChangePWA Pane to the Parent Panel
+        add(masterPaneChangePWA);
+        
+        //////////////////////////////////////////////////
         //Checks to see if the connection to the DB was successful
+        //////////////////////////////////////////////////
         this.setResizable(false);
         if (programState == 1) // If it is, display the Login Page
         {   
@@ -795,55 +1077,71 @@ public class Login_Authenticator extends JFrame
         }
     }
     
+    //////////////////////////////////////////////////
+    //Methods to display Panes
+    //////////////////////////////////////////////////
+    
     final public void displayLogin()
     {
-        paneHistory.push(currPane);
-        currPane = "LoginPane";
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "LoginPane";
         mainLayout.show(masterPaneLogin.getParent(), "LoginPane");
+        accountNameInput.requestFocusInWindow();
     }
     
     final public void displayServer()
     {
-        paneHistory.push(currPane);
-        currPane  = "ServerPane";
         mainLayout.show(masterPaneServer.getParent(), "ServerPane");
     }
     
     final public void displayCreate()
     {        
-        paneHistory.push(currPane);
-        currPane = "CreatePane";
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "CreatePane";
         mainLayout.show(masterPaneCreate.getParent(), "CreatePane");
+        accountNameInputCr.requestFocus();
     } 
     
     final public void displayAdmin()
     {      
-        paneHistory.push(currPane);
-        currPane = "AdminPane";
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "AdminPane";
         mainLayout.show(masterPaneAdmin.getParent(), "AdminPane");
     } 
     
     final public void displayUser()
     {        
-        paneHistory.push(currPane);
-        currPane = "UserPane";
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "UserPane";
         mainLayout.show(masterPaneAdmin.getParent(), "UserPane");
     } 
     
     final public void displayUnlock()
     {        
-        paneHistory.push(currPane);
-        currPane = "UnlockPane";
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "UnlockPane";
         mainLayout.show(masterPaneUnlock.getParent(), "UnlockPane");
     } 
     
-    final public void displayChangePW()
+    final public void displayChangePWU()
     {        
-        paneHistory.push(currPane);
-        currPane = "ChangePWPane";
-        mainLayout.show(masterPaneUnlock.getParent(), "ChangePWPane");
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "ChangePWUPane";
+        mainLayout.show(masterPaneChangePWU.getParent(), "ChangePWUPane");
+        passwordInputCurr.requestFocusInWindow();
     } 
     
+    final public void displayChangePWA()
+    {  
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "ChangePWAPane";
+        mainLayout.show(masterPaneChangePWA.getParent(), "ChangePWAPane");
+        accountNameInputA.requestFocusInWindow();
+    }
+    
+    //////////////////////////////////////////////////
+    // Main Method
+    //////////////////////////////////////////////////
     public static void main(String[] args) throws SQLException
     {
         Login_Authenticator loginGui = new Login_Authenticator();
