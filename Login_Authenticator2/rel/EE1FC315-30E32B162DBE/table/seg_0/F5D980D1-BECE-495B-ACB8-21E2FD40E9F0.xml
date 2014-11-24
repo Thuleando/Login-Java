@@ -26,11 +26,11 @@
 <createdTime>2014-11-09 00:25:45 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<defaultValue>LOCALTIMESTAMP</defaultValue>
 <use>1</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
 <dataTypePrecision>4</dataTypePrecision>
 <usesDefaultValue>true</usesDefaultValue>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="WhenTerminated" id="AF69D71A-AB43-3479-E03E-D935C5353B94">
@@ -40,11 +40,11 @@
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<defaultValue>NULL</defaultValue>
 <use>1</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
 <dataTypePrecision>4</dataTypePrecision>
 <usesDefaultValue>true</usesDefaultValue>
+<defaultValue>NULL</defaultValue>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

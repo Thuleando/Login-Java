@@ -5,19 +5,19 @@
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenInitiated" id="708FAC13-99AA-1FE2-EFCA-E690C3C704B2">
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="WhenInitiated" id="708FAC13-99AA-1FE2-EFCA-E690C3C704B2">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-09 00:28:43 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <defaultValue>LOCALTIMESTAMP</defaultValue>
 </ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="Accounts_ID" id="8678AE9F-993F-DA44-4049-CBDD472CC275">
+<ColumnProxy name="Accounts_ID" id="8678AE9F-993F-DA44-4049-CBDD472CC275">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-10 00:08:52 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenTerminated" id="AF69D71A-AB43-3479-E03E-D935C5353B94">
+<ColumnProxy name="WhenTerminated" id="AF69D71A-AB43-3479-E03E-D935C5353B94">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-10 00:17:51 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>

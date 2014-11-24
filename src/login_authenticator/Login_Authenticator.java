@@ -119,6 +119,7 @@ public class Login_Authenticator extends JFrame
         //Buttons
         //////////////////////////////////////////////////
     JButton unlockAdmin  = new JButton ("Unlock Account");
+    JButton promoteAdmin  = new JButton ("Promote User");
     JButton changePWAdmin = new JButton ("Change Password");
     JButton logoutAdmin = new JButton ("Logout");
     
@@ -149,10 +150,12 @@ public class Login_Authenticator extends JFrame
     JLabel masterPaneUnlock = new JLabel(backgroundUnlock);
     JLabel unlockLabel = new JLabel("Account Lock Management");
     JLabel accountNameLabelUnlock = new JLabel ("Account:  ");
+    JLabel reasonLabelUnlock = new JLabel ("Unlock Reason:  ");
         //////////////////////////////////////////////////
         //Input fields
         //////////////////////////////////////////////////
-    JTextField accountNameInputUnlock = new JTextField ();
+    JComboBox<String> userListUnlock = new JComboBox<String>(new Vector<String>());
+    JComboBox<String> reasonListUnlock = new JComboBox<String>(new Vector<String>());
         //////////////////////////////////////////////////
         //Buttons
         //////////////////////////////////////////////////
@@ -163,6 +166,31 @@ public class Login_Authenticator extends JFrame
         //////////////////////////////////////////////////
     JTextArea infoAreaUnlock = new JTextArea ();
 
+    //////////////////////////////////////////////////
+    //Components for Promote Pane
+    //////////////////////////////////////////////////
+    
+        //////////////////////////////////////////////////
+        //Labels and Background
+        //////////////////////////////////////////////////
+    ImageIcon backgroundPromote = new ImageIcon("background3.jpg");
+    JLabel masterPanePromote = new JLabel(backgroundPromote);
+    JLabel promoteLabel = new JLabel("Promote User to Admin");
+    JLabel accountNameLabelPromote = new JLabel ("Account:  ");
+        //////////////////////////////////////////////////
+        //Input fields
+        //////////////////////////////////////////////////
+    JComboBox<String> userListPromote = new JComboBox<String>(new Vector<String>());
+        //////////////////////////////////////////////////
+        //Buttons
+        //////////////////////////////////////////////////
+    JButton promote  = new JButton ("Promote");
+    JButton backPromote = new JButton ("Back");
+        //////////////////////////////////////////////////
+        //Display Areas
+        //////////////////////////////////////////////////
+    JTextArea infoAreaPromote = new JTextArea ();
+    
     //////////////////////////////////////////////////
     //Components for Change Password Window for User
     //////////////////////////////////////////////////
@@ -233,8 +261,8 @@ public class Login_Authenticator extends JFrame
         //Setup for Connection with the Database
         //////////////////////////////////////////////////
         url = "jdbc:oracle:thin:@cncsidb01.msudenver.edu:1521:DB01";
-        props.setProperty("user", "S900821204");
-        props.setProperty("password", "Shadowz#2");        
+        props.setProperty("user", "SKYWALKER");
+        props.setProperty("password", "LUKE");        
      
         try
         {
@@ -305,6 +333,7 @@ public class Login_Authenticator extends JFrame
             //Admin Pane Listeners
             //////////////////////////////////////////////////
         unlockAdmin.addActionListener(loginEvent);
+        promoteAdmin.addActionListener(loginEvent);
         changePWAdmin.addActionListener(loginEvent);
         logoutAdmin.addActionListener(loginEvent);
         
@@ -317,10 +346,14 @@ public class Login_Authenticator extends JFrame
             //////////////////////////////////////////////////
             //Unlock Pane Listeners
             //////////////////////////////////////////////////
-        accountNameInputUnlock.addKeyListener(loginEvent);
-        accountNameInputUnlock.addFocusListener(loginEvent);
         unlock.addActionListener(loginEvent);
         backUnlock.addActionListener(loginEvent);
+        
+            //////////////////////////////////////////////////
+            //Promote Pane Listeners
+            //////////////////////////////////////////////////
+        promote.addActionListener(loginEvent);
+        backPromote.addActionListener(loginEvent);
         
             //////////////////////////////////////////////////
             //ChangePWU Pane Listeners
@@ -663,12 +696,22 @@ public class Login_Authenticator extends JFrame
         cAdmin.gridy=2;
         cAdmin.insets = new Insets(20,0,0,0);
         cAdmin.gridheight=1;
+        cAdmin.gridwidth=1;
+        cAdmin.weighty=0;
+        cAdmin.fill= GridBagConstraints.NONE;
+        promoteAdmin.setOpaque(true);
+        masterPaneAdmin.add(promoteAdmin, cAdmin);
+        
+        cAdmin.gridx=0;
+        cAdmin.gridy=3;
+        cAdmin.insets = new Insets(20,0,0,0);
+        cAdmin.gridheight=1;
         cAdmin.gridwidth=3;
         changePWAdmin.setOpaque(true);
         masterPaneAdmin.add(changePWAdmin, cAdmin);
         
         cAdmin.gridx=0;
-        cAdmin.gridy=3;
+        cAdmin.gridy=4;
         cAdmin.insets = new Insets(0,0,30,0);
         cAdmin.gridheight=1;
         cAdmin.gridwidth=1;
@@ -766,13 +809,33 @@ public class Login_Authenticator extends JFrame
         cUnlock.gridheight=1;
         cUnlock.gridwidth=2;
         cUnlock.insets = new Insets(100,0,0,0);
-        accountNameInputUnlock.setOpaque(true);
-        accountNameInputUnlock.setForeground(Color.black);
-        accountNameInputUnlock.setCaretColor(Color.black);
-        masterPaneUnlock.add(accountNameInputUnlock, cUnlock);
+        userListUnlock.setOpaque(true);
+        userListUnlock.setForeground(Color.black);
+        masterPaneUnlock.add(userListUnlock, cUnlock);
+        
+        cUnlock.gridx=0;
+        cUnlock.gridy=2;
+        cUnlock.gridheight=1;
+        cUnlock.gridwidth=1;
+        cUnlock.insets = new Insets(0,0,0,0);
+        cUnlock.ipadx=0;
+        cUnlock.fill = GridBagConstraints.HORIZONTAL;  
+        reasonLabelUnlock.setOpaque(false);
+        reasonLabelUnlock.setBackground(Color.black);
+        reasonLabelUnlock.setForeground(Color.white);
+        masterPaneUnlock.add(reasonLabelUnlock, cUnlock);
         
         cUnlock.gridx=1;
         cUnlock.gridy=2;
+        cUnlock.gridheight=1;
+        cUnlock.gridwidth=2;
+        cUnlock.insets = new Insets(0,0,0,0);
+        reasonListUnlock.setOpaque(true);
+        reasonListUnlock.setForeground(Color.black);
+        masterPaneUnlock.add(reasonListUnlock, cUnlock);
+        
+        cUnlock.gridx=1;
+        cUnlock.gridy=3;
         cUnlock.insets = new Insets(30,0,0,0);
         cUnlock.gridheight=1;
         cUnlock.gridwidth=1;
@@ -781,7 +844,7 @@ public class Login_Authenticator extends JFrame
         masterPaneUnlock.add(unlock, cUnlock);
         
         cUnlock.gridx=0;
-        cUnlock.gridy=3;
+        cUnlock.gridy=4;
         cUnlock.weighty = 1;
         cUnlock.gridheight=1;
         cUnlock.gridwidth=2;
@@ -797,7 +860,7 @@ public class Login_Authenticator extends JFrame
         masterPaneUnlock.add(infoAreaUnlock, cUnlock);
         
         cUnlock.gridx=0;
-        cUnlock.gridy=4;
+        cUnlock.gridy=5;
         cUnlock.insets = new Insets(0,0,30,0);
         cUnlock.gridheight=1;
         cUnlock.gridwidth=2;
@@ -812,6 +875,92 @@ public class Login_Authenticator extends JFrame
         mainLayout.addLayoutComponent(masterPaneUnlock, "UnlockPane");
             //Adding Unlock Pane to Parent Panel
         add(masterPaneUnlock);
+        
+        //////////////////////////////////////////////////
+        //Building the Pane for Promote
+        //////////////////////////////////////////////////
+        GridBagLayout masterLayoutPromote = new GridBagLayout();
+        masterPanePromote.setLayout(masterLayoutPromote);
+        GridBagConstraints cPromote = new GridBagConstraints();
+        cPromote.fill = GridBagConstraints.BOTH; 
+        cPromote.anchor = GridBagConstraints.CENTER;
+        
+            //////////////////////////////////////////////////
+            //Adding Components to Promote Pane
+            //////////////////////////////////////////////////
+        cPromote.gridx=0;
+        cPromote.gridy=0;
+        cPromote.gridheight=1;
+        cPromote.gridwidth=2;
+        cPromote.insets = new Insets(120,0,0,00);
+        promoteLabel.setFont(largeFont);
+        promoteLabel.setOpaque(false);
+        promoteLabel.setForeground(Color.white);
+        masterPanePromote.add(promoteLabel, cPromote);
+        
+        //cPromote.fill = GridBagConstraints.NONE; 
+        cPromote.gridx=0;
+        cPromote.gridy=1;
+        cPromote.gridheight=1;
+        cPromote.gridwidth=1;
+        cPromote.insets = new Insets(100,0,0,0);
+        cPromote.ipadx=0;
+        cPromote.fill = GridBagConstraints.HORIZONTAL;  
+        accountNameLabelPromote.setOpaque(false);
+        accountNameLabelPromote.setBackground(Color.black);
+        accountNameLabelPromote.setForeground(Color.white);
+        masterPanePromote.add(accountNameLabelPromote, cPromote);
+        
+        cPromote.gridx=1;
+        cPromote.gridy=1;
+        cPromote.gridheight=1;
+        cPromote.gridwidth=2;
+        cPromote.insets = new Insets(100,0,0,0);
+        userListPromote.setOpaque(true);
+        userListPromote.setForeground(Color.black);
+        masterPanePromote.add(userListPromote, cPromote);
+        
+        cPromote.gridx=1;
+        cPromote.gridy=2;
+        cPromote.insets = new Insets(30,0,0,0);
+        cPromote.gridheight=1;
+        cPromote.gridwidth=1;
+        cPromote.fill= GridBagConstraints.NONE;
+        promote.setOpaque(true);
+        masterPanePromote.add(promote, cPromote);
+        
+        cPromote.gridx=0;
+        cPromote.gridy=3;
+        cPromote.weighty = 1;
+        cPromote.gridheight=1;
+        cPromote.gridwidth=2;
+        cPromote.fill= GridBagConstraints.BOTH;
+        cPromote.ipady = 150;
+        cPromote.insets = new Insets(0,0,0,0);
+        infoAreaPromote.setOpaque(false);
+        //infoAreaPromote.setBackground(Color.black);
+        infoAreaPromote.setForeground(Color.white);
+        infoAreaPromote.setEditable(false);
+        infoAreaPromote.setLineWrap(true);
+        infoAreaPromote.setWrapStyleWord(true);
+        masterPanePromote.add(infoAreaPromote, cPromote);
+        
+        cPromote.gridx=0;
+        cPromote.gridy=4;
+        cPromote.insets = new Insets(0,0,30,0);
+        cPromote.gridheight=1;
+        cPromote.gridwidth=2;
+        cPromote.weighty = 0;
+        cPromote.ipady = 0;
+        cPromote.fill = GridBagConstraints.NONE;
+        cPromote.anchor = GridBagConstraints.SOUTH;
+        backPromote.setOpaque(true);
+        masterPanePromote.add(backPromote, cPromote);
+
+            //Adding Promote Pane to CardLayout
+        mainLayout.addLayoutComponent(masterPanePromote, "PromotePane");
+            //Adding Promote Pane to Parent Panel
+        add(masterPanePromote);
 
         //////////////////////////////////////////////////
         //Setting up the Change Password Pane for User
@@ -1121,6 +1270,15 @@ public class Login_Authenticator extends JFrame
         loginEvent.paneHistory.push(loginEvent.currPane);
         loginEvent.currPane = "UnlockPane";
         mainLayout.show(masterPaneUnlock.getParent(), "UnlockPane");
+        infoAreaUnlock.setText(null);
+    } 
+    
+    final public void displayPromote()
+    {        
+        loginEvent.paneHistory.push(loginEvent.currPane);
+        loginEvent.currPane = "PromotePane";
+        mainLayout.show(masterPanePromote.getParent(), "PromotePane");
+        infoAreaPromote.setText(null);
     } 
     
     final public void displayChangePWU()

@@ -30,7 +30,7 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
     private int results;
     private boolean reachable;
     public String currPane= "LoginPane";
-    public Stack paneHistory= new Stack();
+    public Stack<String> paneHistory= new Stack<String>();
     private Point origPoint;
 
     //////////////////////////////////////////////////
@@ -60,6 +60,10 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                 break;
             case "Unlock":
                 unlock();
+                break;
+            case "Promote User":
+                gui.displayPromote();
+                populateRegUsers();
                 break;
             case "Create Account":
                 gui.infoAreaCr.setText(null);
@@ -94,6 +98,12 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                         break;
                     case "UnlockPane":
                         gui.displayUnlock();
+                        populateLockedUsers();
+                        populateUnlockReasons();
+                        break;
+                    case "PromotePane":
+                        gui.displayPromote();
+                        populateRegUsers();
                         break;
                     case "ChangePWUPane":
                         gui.displayChangePWU();
@@ -106,6 +116,11 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                 
             case "Unlock Account":
                 gui.displayUnlock();
+                populateLockedUsers();
+                populateUnlockReasons();
+                break;
+            case "Promote":
+                promote();
                 break;
             case "Logout":
                 logout();
@@ -518,7 +533,14 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
                     break;
                 case "UnlockPane":
                     gui.displayUnlock();
+                    populateLockedUsers();
+                    populateUnlockReasons();
                     unlock();
+                    break;
+                case "PromotePane":
+                    gui.displayPromote();
+                    populateRegUsers();
+                    promote();
                     break;
                 case "ChangePWUPane":
                     System.out.println(paneHistory.peek());
@@ -821,29 +843,307 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
     }
      
     //////////////////////////////////////////////////
-    //Method to allow an Admin to unlock an account ***Under Construction****
+    //Method to allow an Admin to unlock an account
     //////////////////////////////////////////////////
     
     public void unlock()
-    {   
-        reachable = validConn();
+    {
+        int AccId;
+        int ReasonId;
+        int ValidID;
+        int ValidReason;
+        String reasonName;
 
+        if(gui.userListUnlock.getSelectedItem() != null &&
+                gui.userListUnlock.getSelectedItem() != "" &&
+                gui.reasonListUnlock.getSelectedItem() != null &&
+                gui.reasonListUnlock.getSelectedItem() != "")
+        {
+            userName = String.valueOf(gui.userListUnlock.getSelectedItem());
+            reasonName = String.valueOf(gui.reasonListUnlock.getSelectedItem());
+            
+            gui.infoAreaUnlock.setText("Unlocking Account...");
+            try
+            {
+                if(validConn())
+                {
+                    gui.query = "SELECT COUNT(ID) FROM ACCOUNTS WHERE USERNAME = '"
+                        + userName + "'";
+                    ResultSet resultCur;
+                    Statement stmt = gui.conn.createStatement();
+                    resultCur = stmt.executeQuery(gui.query);
+                    resultCur.next();
+                    ValidID = resultCur.getInt(1);
+                    resultCur.close();
+                    
+                    if(ValidID == 0)
+                    {
+                        results = 2;
+                    }
+                    else
+                    {
+                        gui.query = "SELECT ID FROM ACCOUNTS WHERE USERNAME = '"
+                            + userName + "'";
+                        stmt = gui.conn.createStatement();
+                        resultCur = stmt.executeQuery(gui.query);
+                        resultCur.next();
+                        AccId = resultCur.getInt(1);
+                        
+                        gui.query = "SELECT COUNT(ID) FROM EVENTREASONS WHERE REASONNAME = '"
+                            + reasonName + "' AND REASONTYPE = 'U'";
+                        stmt = gui.conn.createStatement();
+                        resultCur = stmt.executeQuery(gui.query);
+                        resultCur.next();
+                        ValidReason = resultCur.getInt(1);
+                        resultCur.close();
+
+                        if(ValidReason == 0)
+                        {
+                            results = 4;
+                        }
+                        else
+                        {
+                            gui.query = "SELECT ID FROM EVENTREASONS WHERE REASONNAME = '"
+                                + reasonName + "'";
+                            stmt = gui.conn.createStatement();
+                            resultCur = stmt.executeQuery(gui.query);
+                            resultCur.next();
+                            ReasonId = resultCur.getInt(1);
+                            resultCur.close();
+
+                            results = 1;
+
+                            gui.query = "begin UNLOCK_SP(?,?,?); end;";
+                            CallableStatement callStmt = gui.conn.prepareCall(gui.query);
+
+                            callStmt.setInt(1, AccId);
+                            callStmt.setInt(2, ReasonId);
+                            callStmt.registerOutParameter(3, Types.INTEGER);
+                            callStmt.execute();
+                            results = callStmt.getInt(3);
+
+                            gui.infoAreaUnlock.setText(null);
+                            userName = null;
+                        }
+                    }
+                    
+                    switch (results)
+                    {
+                        case 1:
+                            loginResult = "Account Unlocked.";
+                            gui.infoAreaUnlock.setText(loginResult);
+                            populateLockedUsers();
+                            break;
+                        case 2:
+                            loginResult = "Account does not exist.";
+                            gui.infoAreaUnlock.setText(loginResult);
+                            // gui.accountNameInputUnlock.requestFocus();
+                            break;
+                        case 3:
+                            loginResult = "Account is already unlocked; no need to unlock it.";
+                            gui.infoAreaUnlock.setText(loginResult);
+                            // gui.accountNameInputUnlock.requestFocus();
+                            break;
+                        case 4:
+                            loginResult = "That is not a valid unlock reason.";
+                            gui.infoAreaUnlock.setText(loginResult);
+                            // gui.accountNameInputUnlock.requestFocus();
+                            break;
+                        default:
+                            loginResult = "ERROR: Unidentified error when unlocking account.";
+                            gui.infoAreaUnlock.setText(loginResult);
+                            // gui.accountNameInputUnlock.requestFocus();
+                            break;  
+                    }
+                }
+            }
+            catch (SQLException a)
+            {
+                System.out.println("Exception being thrown\n" + a );
+            }
+        }
+        else
+        {
+            // gui.accountNameInputUnlock.setText(null);
+            userName = null;
+            gui.infoAreaUnlock.setText("ERROR: Must enter a username.");
+            // gui.accountNameInputUnlock.requestFocus();
+        }
+    }
+    
+    //////////////////////////////////////////////////
+    //Method that populates list of locked users
+    //////////////////////////////////////////////////
+    
+    public void populateLockedUsers()
+    {
         try
         {
-            gui.query = "begin UPDATE Accounts SET UnlockDate = LOCALTIMESTAMP, LockDate = NULL WHERE UserName = '"
-                    + userName + "'; end;";
-            Statement stmt = gui.conn.createStatement();
-            stmt.executeUpdate(gui.query);
-            gui.login.setVisible(true);
-            gui.query = "Account Successfully Unlocked!";
-            gui.infoArea.setText(gui.query);
-
+            if(validConn())
+            {
+                gui.userListUnlock.removeAllItems();
+                
+                gui.query = "SELECT USERNAME FROM ACCOUNTS WHERE LOCKSTATUS = 'Y'";
+                ResultSet resultCur;
+                Statement stmt = gui.conn.createStatement();
+                resultCur = stmt.executeQuery(gui.query);
+                
+                while(resultCur.next())
+                {
+                    gui.userListUnlock.addItem(resultCur.getString(1));
+                }
+                resultCur.close();
+            }
         }
-            
         catch (SQLException a)
         {
             System.out.println("Exception being thrown\n" + a );
-        };
+        }
+    }
+    
+    //////////////////////////////////////////////////
+    //Method that populates list of unlock reasons
+    //////////////////////////////////////////////////
+    
+    public void populateUnlockReasons()
+    {
+        try
+        {
+            if(validConn())
+            {
+                gui.reasonListUnlock.removeAllItems();
+                
+                gui.query = "SELECT REASONNAME FROM EVENTREASONS WHERE REASONTYPE = 'U'";
+                ResultSet resultCur;
+                Statement stmt = gui.conn.createStatement();
+                resultCur = stmt.executeQuery(gui.query);
+                
+                while(resultCur.next())
+                {
+                    if (!resultCur.getString(1).trim().toUpperCase().equals("CREATION"))
+                    {
+                        gui.reasonListUnlock.addItem(resultCur.getString(1));
+                    }
+                }
+                resultCur.close();
+            }
+        }
+        catch (SQLException a)
+        {
+            System.out.println("Exception being thrown\n" + a );
+        }
+    }
+    
+    public void promote()
+    {
+        int AccId;
+        int ValidID;
+
+        if(gui.userListPromote.getSelectedItem() != null &&
+                gui.userListPromote.getSelectedItem() != "")
+        {
+            userName = String.valueOf(gui.userListPromote.getSelectedItem());
+            
+            gui.infoAreaPromote.setText("Promoting User...");
+            try
+            {
+                if(validConn())
+                {
+                    gui.query = "SELECT COUNT(ID) FROM ACCOUNTS WHERE USERNAME = '"
+                        + userName + "'";
+                    ResultSet resultCur;
+                    Statement stmt = gui.conn.createStatement();
+                    resultCur = stmt.executeQuery(gui.query);
+                    resultCur.next();
+                    ValidID = resultCur.getInt(1);
+                    resultCur.close();
+                    
+                    if(ValidID == 0)
+                    {
+                        results = 2;
+                    }
+                    else
+                    {                       
+                        gui.query = "SELECT ID FROM ACCOUNTS WHERE USERNAME = '"
+                            + userName + "'";
+                        stmt = gui.conn.createStatement();
+                        resultCur = stmt.executeQuery(gui.query);
+                        resultCur.next();
+                        AccId = resultCur.getInt(1);
+                        resultCur.close();
+
+                        results = 1;
+
+                        gui.query = "UPDATE ACCOUNTS SET ACCOUNTTYPES_ID = 1 "
+                                + "WHERE USERNAME = '" + userName + "'";
+                        stmt = gui.conn.createStatement();
+                        resultCur = stmt.executeQuery(gui.query);
+                        resultCur.close();
+
+                        gui.infoAreaPromote.setText(null);
+                    }
+                    
+                    switch (results)
+                    {
+                        case 1:
+                            loginResult = "Promoted " + userName + " to Admin.";
+                            gui.infoAreaPromote.setText(loginResult);
+                            populateRegUsers();
+                            userName = null;
+                            break;
+                        case 2:
+                            loginResult = "Account does not exist.";
+                            gui.infoAreaPromote.setText(loginResult);
+                            break;
+                        default:
+                            loginResult = "ERROR: Unidentified error when promoting account.";
+                            gui.infoAreaPromote.setText(loginResult);
+                            break;  
+                    }
+                }
+            }
+            catch (SQLException a)
+            {
+                System.out.println("Exception being thrown\n" + a );
+            }
+        }
+        else
+        {
+            userName = null;
+            gui.infoAreaPromote.setText("ERROR: Must enter a username.");
+        }
+    }
+    
+    //////////////////////////////////////////////////
+    //Method that populates list of regular users
+    //////////////////////////////////////////////////
+    
+    public void populateRegUsers()
+    {
+        try
+        {
+            if(validConn())
+            {
+                gui.userListPromote.removeAllItems();
+                
+                gui.query = "SELECT ACCOUNTS.USERNAME FROM ACCOUNTS INNER JOIN ACCOUNTTYPES "
+                            + "ON ACCOUNTS.ACCOUNTTYPES_ID = ACCOUNTTYPES.ID "
+                            + "WHERE ACCOUNTTYPES.TYPENAME = 'USER'";
+                ResultSet resultCur;
+                Statement stmt = gui.conn.createStatement();
+                resultCur = stmt.executeQuery(gui.query);
+                
+                while(resultCur.next())
+                {
+                    gui.userListPromote.addItem(resultCur.getString(1));
+                }
+                resultCur.close();
+            }
+        }
+        catch (SQLException a)
+        {
+            System.out.println("Exception being thrown\n" + a );
+        }
     }
     
     //////////////////////////////////////////////////

@@ -26,11 +26,11 @@
 <createdTime>2014-11-09 00:27:11 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<defaultValue>LOCALTIMESTAMP</defaultValue>
 <use>1</use>
 <logicalDatatype>LOGDT015</logicalDatatype>
 <dataTypePrecision>4</dataTypePrecision>
 <usesDefaultValue>true</usesDefaultValue>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="WasSuccessful" id="CE159B76-E8ED-FC5F-B736-472829DAB8B1">
@@ -39,7 +39,6 @@
 <comment>&apos;Y&apos; or &apos;N&apos;</comment>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<defaultValue>&apos;N&apos;</defaultValue>
 <use>1</use>
 <logicalDatatype>LOGDT006</logicalDatatype>
 <dataTypeSize>1</dataTypeSize>
@@ -48,6 +47,7 @@
 <valueDef value="&apos;N&apos;" description="No or False"/>
 <valueDef value="&apos;Y&apos;" description="Yes or True"/>
 </listOfValues>
+<defaultValue>&apos;N&apos;</defaultValue>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

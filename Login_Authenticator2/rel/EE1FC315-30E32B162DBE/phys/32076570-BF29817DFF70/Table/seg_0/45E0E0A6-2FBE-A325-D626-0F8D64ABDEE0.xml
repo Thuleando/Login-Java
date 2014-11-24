@@ -5,21 +5,21 @@
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WhenAttempted" id="31A5895E-FCF2-91D0-7B07-E8E7F602633A">
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="WhenAttempted" id="31A5895E-FCF2-91D0-7B07-E8E7F602633A">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-09 00:28:43 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <defaultValue>LOCALTIMESTAMP</defaultValue>
 </ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WasSuccessful" id="CE159B76-E8ED-FC5F-B736-472829DAB8B1">
+<ColumnProxy name="WasSuccessful" id="CE159B76-E8ED-FC5F-B736-472829DAB8B1">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-10 00:16:13 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 <defaultValue>&apos;N&apos;</defaultValue>
 <elementType>CHAR (1)</elementType>
 </ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="Accounts_ID" id="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F">
+<ColumnProxy name="Accounts_ID" id="EF2EFDD9-5CC0-9B99-BC4A-147CCC12141F">
 <createdBy>Jason</createdBy>
 <createdTime>2014-11-10 00:09:00 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>

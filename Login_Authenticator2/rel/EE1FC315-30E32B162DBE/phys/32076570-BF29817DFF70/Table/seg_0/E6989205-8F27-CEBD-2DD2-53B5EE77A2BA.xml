@@ -13,6 +13,7 @@
 <createdBy>Shelley</createdBy>
 <createdTime>2014-11-20 01:43:48 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>LOCALTIMESTAMP</defaultValue>
 </ColumnProxy>
 <ColumnProxy name="ID" id="688A4D4A-3F87-6EC0-4BCA-DA9CD3F1EF0C">
 <createdBy>Shelley</createdBy>
@@ -30,14 +31,15 @@
 <createdTime>2014-11-20 01:59:14 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="LUReasons_ID" id="C4C04917-35E5-5E83-FE38-A496681BF56D">
+<ColumnProxy name="EventReasons_ID" id="C4C04917-35E5-5E83-FE38-A496681BF56D">
 <createdBy>Shelley</createdBy>
 <createdTime>2014-11-20 02:00:49 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
+<defaultValue>1</defaultValue>
 </ColumnProxy>
 </columnProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="LockEvents_LUReasons_FK" id="0E6CBD89-4218-9FF1-6913-ED5555C06D41">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="LockEvents_EReasons_FK" id="0E6CBD89-4218-9FF1-6913-ED5555C06D41">
 <createdBy>Shelley</createdBy>
 <createdTime>2014-11-20 02:00:49 UTC</createdTime>
 <ownerDesignName>Login_Authenticator2</ownerDesignName>
