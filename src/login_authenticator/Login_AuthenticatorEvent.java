@@ -28,6 +28,7 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
     private String loginResult;
     private String accountType;
     private int results;
+    final private int RECONNECTTIMEOUT = 5;
     private boolean reachable;
     public String currPane= "LoginPane";
     public Stack<String> paneHistory= new Stack<>();
@@ -537,43 +538,47 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
             //creating connection to Oracle database using JDBC
             gui.conn = DriverManager.getConnection(gui.url,gui.props);
 
-            switch ((String)paneHistory.pop())
+            switch (currPane)
             {
                 case "LoginPane":
                     gui.displayLogin();
+                    paneHistory.pop();
                     login();
                     break;
                 case "CreatePane":
                     gui.displayCreate();
+                    paneHistory.pop();
                     createAccount();
                     break;
                 case "AdminPane":
                     gui.displayAdmin();
+                    paneHistory.pop();
                     break;
                 case "UserPane":
                     gui.displayUser();
+                    paneHistory.pop();
                     break;
                 case "UnlockPane":
                     gui.displayUnlock();
-                    populateLockedUsers();
+                    paneHistory.pop();
+                    //populateLockedUsers();
                     populateUnlockReasons();
                     unlock();
                     break;
                 case "PromotePane":
                     gui.displayPromote();
-                    populateRegUsers();
+                    paneHistory.pop();
+                    //populateRegUsers();
                     promote();
                     break;
                 case "ChangePWUPane":
-                    System.out.println(paneHistory.peek());
                     gui.displayChangePWU();
-                    System.out.println(paneHistory.peek());
+                    paneHistory.pop();
                     changePWU();
                     break;
                 case "ChangePWAPane":
-                    System.out.println(paneHistory.peek());
                     gui.displayChangePWA();
-                    System.out.println(paneHistory.peek());
+                    paneHistory.pop();
                     changePWA();
                     break;
             }
@@ -1178,10 +1183,10 @@ public class Login_AuthenticatorEvent implements ActionListener, ItemListener, K
     {
         try
         {
-            reachable = gui.conn.isValid(5);
+            reachable = gui.conn.isValid(RECONNECTTIMEOUT);
             if (reachable == false)
                 {
-                    gui.serverArea.setText("\nCannot connect to the Database");
+                    gui.serverArea.setText("\nCannot connect to the database");
                     gui.displayServer();
                     gui.repaint();
                 }
